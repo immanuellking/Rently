@@ -9,13 +9,13 @@ const Header = () => {
             <a href="#">For Renters</a>
           </li>
           <li className="hover:text-brightGreen font-medium">
-            <a href="#">About</a>
-          </li>
-          <li className="hover:text-brightGreen font-medium">
-            <a href="#">Blog</a>
+            <a href="#">For Landlords</a>
           </li>
           <li className="hover:text-brightGreen font-medium">
             <a href="#">Contact</a>
+          </li>
+          <li className="hover:text-brightGreen font-medium">
+            <a href="#">About Us</a>
           </li>
         </ul>
       </nav>
