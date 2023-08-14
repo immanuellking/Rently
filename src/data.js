@@ -4,7 +4,7 @@ import { RiCoinsFill } from "react-icons/ri";
 import { PiShieldCheckFill } from "react-icons/pi";
 import { ImHome3 } from "react-icons/im";
 
-const subLinks = [
+export const subLinks = [
   {
     page: `For Rentals ${(<BsChevronDown />)}`,
     links: [
