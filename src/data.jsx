@@ -1,8 +1,9 @@
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown, BsQuestion } from "react-icons/bs";
 import { SiWindows11 } from "react-icons/si";
 import { RiCoinsFill } from "react-icons/ri";
-import { PiShieldCheckFill } from "react-icons/pi";
+import { PiShieldCheckFill, PiWarningCircle, PiNewspaperFill } from "react-icons/pi";
 import { ImHome3 } from "react-icons/im";
+import { BiSolidMessageRoundedDetail } from "react-icons/bi";
 
 export const subLinks = [
   {
@@ -45,4 +46,11 @@ export const subLinks = [
       },
     ],
   },
+];
+
+export const learnLinks = [
+  { label: "Help", bg: "47BB34", icon: <BsQuestion /> },
+  { label: "FAQs", bg: "442AAC", icon: <BiSolidMessageRoundedDetail /> },
+  { label: "About Us", bg: "47BB34", icon: <PiWarningCircle /> },
+  { label: "Blog", bg: "47BB34", icon: <PiNewspaperFill /> },
 ];

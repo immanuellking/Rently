@@ -4,6 +4,7 @@ import { openSubMenu, closeSubMenu } from "../features/subMenu/subMenuSlice";
 import { BsChevronDown } from "react-icons/bs";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import SubMenuView from "../features/subMenu/SubMenuView";
+import MobileSubMenuView from "../features/subMenu/MobileSubMenuView";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -80,6 +81,7 @@ const Header = () => {
       </div>
     </header>
     <SubMenuView />
+    <MobileSubMenuView />
     </>
   );
 };
