@@ -26,8 +26,11 @@ const subMenuSlice = createSlice({
       state.location = {left, bottom}
       console.log(state.location)
     },
+    closeSubMenu: (state) => {
+        state.isSubMenuOpen = false;
+    }
   },
 });
 
 export default subMenuSlice.reducer;
-export const { openSubMenu } = subMenuSlice.actions;
+export const { openSubMenu, closeSubMenu } = subMenuSlice.actions;

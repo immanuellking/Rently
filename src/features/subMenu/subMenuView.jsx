@@ -15,7 +15,7 @@ const SubMenuView = () => {
 
     const subHeader = container.current;
     subHeader.style.left = `${left}px`;
-
+    
     setLink(linksObj);
   }, [headerSubLinks]);
 
