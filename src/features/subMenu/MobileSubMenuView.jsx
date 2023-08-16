@@ -2,10 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { learnLinks } from "../../data";
 
-const MobileSubMenuView = () => {
+const MobileSubMenuView = ({openSidebar}) => {
   const mobileSubLinks = useSelector((state) => state.subMenu.headerLinks);
   return (
-    <section className="w-full bg-black px-6 py-8 space-y-8">
+    <section className={`w-full bg-black px-6 py-8 space-y-8 absolute -z-10 ${openSidebar ? "translate-y-0" : "-translate-y-[1100px]"} ease-in-out duration-1000`}>
       {mobileSubLinks.map((subLink, index) => {
         const { page, links } = subLink;
         return (
