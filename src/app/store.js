@@ -6,3 +6,5 @@ const store = configureStore({
     subMenu: subMenuReducer,
   },
 });
+
+export default store
