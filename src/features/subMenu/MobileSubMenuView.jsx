@@ -5,7 +5,7 @@ import { learnLinks } from "../../data";
 const MobileSubMenuView = () => {
   const mobileSubLinks = useSelector((state) => state.subMenu.headerLinks);
   return (
-    <section className="w-full bg-black px-4 py-2 space-y-8">
+    <section className="w-full bg-black px-6 py-8 space-y-8">
       {mobileSubLinks.map((subLink, index) => {
         const { page, links } = subLink;
         return (
@@ -17,7 +17,10 @@ const MobileSubMenuView = () => {
             {links.map((link, index) => {
               const { label, icon, bg } = link;
               return (
-                <div className="flex items-center gap-x-4" key={index}>
+                <div
+                  className="flex items-center gap-x-4"
+                  key={index}
+                >
                   <div
                     className="flex items-center justify-center w-10 h-10 rounded-xl"
                     style={{ background: `#${bg}` }}
@@ -33,7 +36,7 @@ const MobileSubMenuView = () => {
           </article>
         );
       })}
-      <article className="space-y-6" >
+      <article className="space-y-6">
         <h2 className="text-lg text-[#D1D1D8]">Learn</h2>
         {learnLinks.map((link, index) => {
           const { label, icon, bg } = link;
@@ -52,6 +55,15 @@ const MobileSubMenuView = () => {
           );
         })}
       </article>
+
+      <div className="flex flex-col header gap-y-4">
+        <button className="bg-brightBlue text-white text-lg font-semibold py-3 w-80 px-4 rounded-3xl whitespace-nowrap">
+          Create Account
+        </button>
+        <button className="text-white text-lg font-semibold border-2 border-white py-3 w-80 px-4 rounded-3xl whitespace-nowrap">
+          Sign In
+        </button>
+      </div>
     </section>
   );
 };
