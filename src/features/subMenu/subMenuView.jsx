@@ -14,6 +14,7 @@ const SubMenuView = () => {
       const { links: linksObj } = headerSubLinks;
       setLink(linksObj);
     }
+
     const { left, bottom } = location;
 
     const subHeader = container.current;
