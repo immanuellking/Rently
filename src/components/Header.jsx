@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { openSubMenu, closeSubMenu } from "../features/subMenu/subMenuSlice";
 import { BsChevronDown } from "react-icons/bs";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
+import { CgClose } from "react-icons/cg";
 import SubMenuView from "../features/subMenu/SubMenuView";
 import MobileSubMenuView from "../features/subMenu/MobileSubMenuView";
 
@@ -24,6 +25,10 @@ const Header = () => {
       dispatch(closeSubMenu());
     }
   };
+
+  const displaySidebar = () => {
+    setOpenSidebar(!openSidebar)
+  }
 
   return (
     <>
@@ -66,9 +71,9 @@ const Header = () => {
           </ul>
           <div
             className="flex sm:hidden text-white"
-            onClick={() => setOpenSidebar(!openSidebar)}
+            onClick={displaySidebar}
           >
-            <HiOutlineMenuAlt1 className="text-white text-4xl font-bold" />
+            {openSidebar ? <CgClose className="text-white text-4xl font-bold" /> : <HiOutlineMenuAlt1 className="text-white text-4xl font-bold" />}
           </div>
         </nav>
         <div className="flex-1 flex justify-center sm:justify-center header">

@@ -10,13 +10,14 @@ const SubMenuView = () => {
   const { headerSubLinks, location, isSubMenuOpen } = subMenu;
 
   useEffect(() => {
-    const { links: linksObj } = headerSubLinks;
+    if (headerSubLinks && headerSubLinks.links) {
+      const { links: linksObj } = headerSubLinks;
+      setLink(linksObj);
+    }
     const { left, bottom } = location;
 
     const subHeader = container.current;
     subHeader.style.left = `${left}px`;
-    
-    setLink(linksObj);
   }, [headerSubLinks]);
 
   console.log(links);

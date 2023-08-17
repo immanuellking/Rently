@@ -2,10 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { learnLinks } from "../../data";
 
-const MobileSubMenuView = ({openSidebar}) => {
+const MobileSubMenuView = ({ openSidebar }) => {
   const mobileSubLinks = useSelector((state) => state.subMenu.headerLinks);
   return (
-    <section className={`w-full bg-black px-6 py-8 space-y-8 absolute -z-10 ${openSidebar ? "translate-y-0" : "-translate-y-[1100px]"} ease-in-out duration-1000`}>
+    <section
+      className={`w-full block sm:hidden bg-black px-6 py-8 space-y-8 absolute -z-10 ${
+        openSidebar ? "translate-y-0" : "-translate-y-[1100px]"
+      } ease-in-out duration-1000 overflow-y-scroll`}
+    >
       {mobileSubLinks.map((subLink, index) => {
         const { page, links } = subLink;
         return (
@@ -41,7 +45,10 @@ const MobileSubMenuView = ({openSidebar}) => {
         {learnLinks.map((link, index) => {
           const { label, icon, bg } = link;
           return (
-            <div className="flex items-center gap-x-4">
+            <div
+              className="flex items-center gap-x-4"
+              key={index}
+            >
               <div
                 className="flex items-center justify-center w-10 h-10 rounded-xl"
                 style={{ background: `#${bg}` }}
