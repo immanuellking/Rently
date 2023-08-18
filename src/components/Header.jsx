@@ -33,8 +33,9 @@ const Header = () => {
   return (
     <>
       <header
-        className="flex w-full lg:justify-between items-center px-2 z-50 sm:px-5 lg:px-20 h-20 sm:h-24 bg-black text-white header"
+        className="flex w-full lg:justify-between items-center px-2 sm:px-5 lg:px-20 h-20 sm:h-24 bg-black text-white header"
         onClick={closeSubMenuLinks}
+        style={{zIndex: 1000}}
       >
         <nav className="sm:flex-1">
           <ul className="hidden sm:flex justify-between">

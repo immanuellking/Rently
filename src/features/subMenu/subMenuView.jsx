@@ -26,7 +26,9 @@ const SubMenuView = () => {
   return (
     <div
       className={`bg-[#060606] absolute ${
-        !isSubMenuOpen ? "hidden" : "hidden sm:grid"
+        !isSubMenuOpen
+          ? "hidden"
+          : `${links.length > 1 ? "hidden sm:grid" : "hidden"}`
       } grid-cols-2 px-12 py-12 gap-12 z-50`}
       ref={container}
     >
