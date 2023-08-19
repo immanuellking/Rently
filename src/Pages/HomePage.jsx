@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import HeroBanner from "../components/HeroBanner";
 import EasytoUseTools from "../components/EasytoUseTools";
 import OurProducts from "../components/OurProducts";
+import Banner from "../components/Banner";
+import WhyRently from "../components/WhyRently";
 
 
 const HomePage = () => {
@@ -12,6 +14,8 @@ const HomePage = () => {
       <HeroBanner />
       <EasytoUseTools />
       <OurProducts />
+      <Banner />
+      <WhyRently />
     </>
   );
 };
