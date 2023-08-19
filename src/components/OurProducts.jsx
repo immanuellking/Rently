@@ -50,33 +50,38 @@ const products = [
 
 const OurProducts = () => {
   const [activePageTab, setActivePageTab] = useState(0);
-  const { contents } = products[0];
+  const { contents } = products[activePageTab];
 
-  const displayTab = () => {
-    if(activePageTab === 0) {
-        setActivePageTab(activePageTab += 1)
+  const displayTab = (e) => {
+    const tab = e.target.textContent;
+    console.log(tab);
+
+    if (tab === "FOR LANDLORDS") {
+      setActivePageTab(1);
+    } else {
+      setActivePageTab(0);
     }
-  }
+  };
 
   return (
-    <section className="bg-black py-20 px-20 space-y-14">
-      <div className="space-y-5">
+    <section className="bg-black py-20 px-4 sm:px-8 lg:px-20 space-y-10 sm:space-y-14">
+      <div className="flex flex-col items-center space-y-3 sm:space-y-5">
         <h3 className="text-[#059A57] font-bold">OUR PRODUCTS</h3>
-        <h1 className="text-white text-4xl font-bold">
-          Are you looking to rent or lease an apartment? <br /> We’ve got you
+        <h1 className="text-white text-center sm:text-left text-2xl sm:text-4xl font-bold">
+          Are you looking to rent or lease an apartment? <br className="hidden lg:block" /> We’ve got you
           covered.
         </h1>
       </div>
-      <div className="flex gap-x-28">
-        <div className="space-y-5">
+      <div className="flex flex-col sm:flex-row gap-y-10 sm:gap-y-0 sm:gap-x-16 lg:gap-x-28">
+        <div className="space-x-8 sm:space-x-0 sm:space-y-5 flex flex-row justify-center sm:justify-start sm:flex-col">
           {products.map((product, index) => {
             const { page } = product;
             return (
               <div
                 key={index}
-                className={`text-white whitespace-nowrap text-xs font-bold pl-3 cursor-pointer ${
-                  activePageTab === index &&
-                  "text-[#3DDC97] border-[#3DDC97] border-l-2"
+                className={`whitespace-nowrap text-sm sm:text-xs font-bold px-5 py-4 sm:py-0 sm:pr-0 sm:pl-4 cursor-pointer ${
+                  activePageTab === index ?
+                  "text-[#3DDC97] border-[#3DDC97] border-b-2 sm:border-l-2" : "border-b-2 sm:border-l-2 border-l-black text-white"
                 }`}
                 onClick={displayTab}
               >
@@ -85,39 +90,43 @@ const OurProducts = () => {
             );
           })}
         </div>
-        <div className="flex gap-x-20">
-          {contents.map((content, index) => {
-            const { image, icon, label, text, bg } = content;
-            return (
-              <div
-                key={index}
-                className="bg-[#131414] flex-1 overflow-hidden rounded-2xl"
-              >
-                <img
-                  src={image}
-                  className="w-full h-[15rem]"
-                />
-                <div className="px-6 py-8 flex flex-col items-start">
-                  <div className="flex items-center gap-x-3">
-                    <div
-                      className="flex items-center justify-center w-9 h-9 rounded-xl"
-                      style={{ background: `#${bg}` }}
-                    >
-                      <div className="text-white text-lg">{icon}</div>
+        <div className="flex sm:gap-x-14 sm:overflow-x-scroll w-full sm:hide-x-scrollbar">
+          <div className="flex flex-col sm:flex-row space-y-10 sm:space-y-0 sm:space-x-14">
+            {contents.map((content, index) => {
+              const { image, icon, label, text, bg } = content;
+              return (
+                <div
+                  key={index}
+                  className="bg-[#131414] w-full sm:w-[25rem] lg:w-[28rem] overflow-hidden rounded-3xl lg:rounded-2xl"
+                >
+                  <img
+                    src={image}
+                    className="w-full h-[15rem] sm:h-[17rem]"
+                  />
+                  <div className="px-6 py-8 flex flex-col items-start">
+                    <div className="flex items-center gap-x-3">
+                      <div
+                        className="flex items-center justify-center w-9 h-9 rounded-xl"
+                        style={{ background: `#${bg}` }}
+                      >
+                        <div className="text-white text-lg">{icon}</div>
+                      </div>
+                      <h2 className="text-2xl text-white font-medium">
+                        {label}
+                      </h2>
                     </div>
-                    <h2 className="text-2xl text-white font-medium">{label}</h2>
+                    <div className="my-10 h-[8rem] sm:h-[5rem]">
+                      <p className="text-white text-sm">{text}</p>
+                    </div>
+                    <button className="flex items-center text-[#3DDC97] text-sm font-medium">
+                      Learn More{" "}
+                      <BsChevronRight className="text-xs ml-2 font-semibold" />
+                    </button>
                   </div>
-                  <div className="my-10 h-[5rem]">
-                    <p className="text-white text-sm">{text}</p>
-                  </div>
-                  <button className="flex items-center text-[#3DDC97] text-sm font-medium">
-                    Learn More{" "}
-                    <BsChevronRight className="text-xs ml-2 font-semibold" />
-                  </button>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
