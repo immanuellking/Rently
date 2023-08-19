@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { openSubMenu, closeSubMenu } from "../features/subMenu/subMenuSlice";
 import { BsChevronDown } from "react-icons/bs";
@@ -11,12 +11,13 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const [openSidebar, setOpenSidebar] = useState(false);
+  const headerBottom = useRef()
 
   const displaySubMenu = (e) => {
     const pageLink = e.target.textContent;
     const tempBtn = e.target.getBoundingClientRect();
     const left = tempBtn.left;
-    const bottom = tempBtn.bottom;
+    const bottom = headerBottom.current.getBoundingClientRect().bottom;
     dispatch(openSubMenu({ pageLink, left, bottom }));
   };
 
@@ -33,9 +34,10 @@ const Header = () => {
   return (
     <>
       <header
-        className="flex w-full lg:justify-between items-center px-2 sm:px-5 lg:px-20 h-20 sm:h-24 bg-black text-white header"
+        className="flex w-full lg:justify-between items-center px-2 sm:px-5 lg:px-20 h-20 sm:h-24 bg-black text-white fixed top-0 left-0 right-0 header"
         onClick={closeSubMenuLinks}
         style={{zIndex: 1000}}
+        ref={headerBottom}
       >
         <nav className="sm:flex-1">
           <ul className="hidden sm:flex justify-between">

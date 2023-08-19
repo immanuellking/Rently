@@ -65,11 +65,11 @@ const OurProducts = () => {
 
   return (
     <section className="bg-black py-20 px-4 sm:px-8 lg:px-20 space-y-10 sm:space-y-14">
-      <div className="flex flex-col items-center space-y-3 sm:space-y-5">
+      <div className="flex flex-col items-center sm:items-start space-y-3 sm:space-y-5">
         <h3 className="text-[#059A57] font-bold">OUR PRODUCTS</h3>
         <h1 className="text-white text-center sm:text-left text-2xl sm:text-4xl font-bold">
-          Are you looking to rent or lease an apartment? <br className="hidden lg:block" /> We’ve got you
-          covered.
+          Are you looking to rent or lease an apartment?{" "}
+          <br className="hidden lg:block" /> We’ve got you covered.
         </h1>
       </div>
       <div className="flex flex-col sm:flex-row gap-y-10 sm:gap-y-0 sm:gap-x-16 lg:gap-x-28">
@@ -80,8 +80,9 @@ const OurProducts = () => {
               <div
                 key={index}
                 className={`whitespace-nowrap text-sm sm:text-xs font-bold px-5 py-4 sm:py-0 sm:pr-0 sm:pl-4 cursor-pointer ${
-                  activePageTab === index ?
-                  "text-[#3DDC97] border-[#3DDC97] border-b-2 sm:border-l-2" : "border-b-2 sm:border-l-2 border-l-black text-white"
+                  activePageTab === index
+                    ? "text-[#3DDC97] border-[#3DDC97] border-b-2 sm:border-b-0 sm:border-l-2"
+                    : "border-b-2 sm:border-b-0 sm:border-l-2 border-l-black text-white"
                 }`}
                 onClick={displayTab}
               >
@@ -90,7 +91,7 @@ const OurProducts = () => {
             );
           })}
         </div>
-        <div className="flex sm:gap-x-14 sm:overflow-x-scroll w-full sm:hide-x-scrollbar">
+        <div className="flex sm:gap-x-14 sm:overflow-x-scroll w-full hide-x-scrollbar">
           <div className="flex flex-col sm:flex-row space-y-10 sm:space-y-0 sm:space-x-14">
             {contents.map((content, index) => {
               const { image, icon, label, text, bg } = content;

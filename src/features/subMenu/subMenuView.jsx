@@ -19,18 +19,20 @@ const SubMenuView = () => {
 
     const subHeader = container.current;
     subHeader.style.left = `${left}px`;
+    subHeader.style.top = `${bottom}px`;
   }, [headerSubLinks]);
 
   console.log(links);
 
   return (
     <div
-      className={`bg-[#060606] absolute ${
+      className={`bg-[#060606] fixed ${
         !isSubMenuOpen
           ? "hidden"
           : `${links.length > 1 ? "hidden sm:grid" : "hidden"}`
-      } grid-cols-2 px-12 py-12 gap-12 z-50`}
+      } grid-cols-2 px-12 py-12 gap-12`}
       ref={container}
+      style={{zIndex: 1000}}
     >
       {links.length > 1 &&
         links.map((link, index) => {

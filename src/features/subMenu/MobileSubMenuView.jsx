@@ -6,9 +6,9 @@ const MobileSubMenuView = ({ openSidebar }) => {
   const mobileSubLinks = useSelector((state) => state.subMenu.headerLinks);
   return (
     <section
-      className={`w-full block sm:hidden bg-black px-6 py-8 space-y-8 absolute ${
+      className={`w-full block sm:hidden bg-black px-6 py-8 space-y-8 fixed left-0 right-0 ${
         openSidebar ? "translate-y-0" : "-translate-y-[1100px]"
-      } ease-in-out duration-1000 overflow-auto`}
+      } ease-in-out duration-1000 h-screen overflow-y-auto`}
       style={{zIndex: 900}}
     >
       {mobileSubLinks.map((subLink, index) => {

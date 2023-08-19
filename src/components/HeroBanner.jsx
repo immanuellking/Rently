@@ -9,7 +9,7 @@ const HeroBanner = () => {
   const dispatch = useDispatch();
   return (
     <section
-      className="relative w-full h-[75vh] sm:h-[70vh] lg:h-[80vh]"
+      className="relative w-full h-[75vh] sm:h-[70vh] lg:h-[95vh]"
       onClick={() => dispatch(closeSubMenu())}
     >
       <div
