@@ -39,11 +39,12 @@ const WhyRently = () => {
       <div>
         <div className="space-y-4">
           <h3 className="text-[#059A57] font-bold">OUR PRODUCTS</h3>
-          <div className="flex justify-between gap-x-20">
-            <h1 className="text-black text-4xl font-bold">
-              Quality apartments.<br /> Trusted by millions of renters.
+          <div className="flex flex-col lg:flex-row justify-between gap-y-4 sm:gap-y-6 lg:gap-x-20">
+            <h1 className="text-black text-2xl sm:text-4xl font-bold">
+              Quality apartments.
+              <br className="hidden sm:block" /> Trusted by millions of<br className="hidden sm:block lg:hidden" /> renters.
             </h1>
-            <p className="w-[40rem] text-sm text-[#6d6d6e] font-medium">
+            <p className="w-full sm:w-[35rem] lg:w-[40rem] text-sm text-[#6d6d6e] font-medium">
               We offer you access to premium residential solutions, with as
               little as possible. Filter by price, location, apartment type and
               duration to find your next home.
@@ -52,7 +53,7 @@ const WhyRently = () => {
         </div>
       </div>
 
-      <div className="flex justify-between ">
+      <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-60 lg:gap-x-0 gap-y-16 px-6 sm:px-10 lg:px-0">
         {offers.map((item, index) => {
           const { icon, bg, label, text } = item;
           return (
@@ -64,7 +65,7 @@ const WhyRently = () => {
                 <div className="text-white text-2xl">{icon}</div>
               </div>
               <div className="space-y-6">
-                <h3 className="font-semibold text-xl" >{label}</h3>
+                <h3 className="font-semibold text-xl">{label}</h3>
                 <p className="text-sm text-[#6d6d6e] font-medium">{text}</p>
               </div>
             </div>
