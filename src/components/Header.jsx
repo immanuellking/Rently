@@ -11,7 +11,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const [openSidebar, setOpenSidebar] = useState(false);
-  const headerBottom = useRef()
+  const headerBottom = useRef();
 
   const displaySubMenu = (e) => {
     const pageLink = e.target.textContent;
@@ -28,41 +28,31 @@ const Header = () => {
   };
 
   const displaySidebar = () => {
-    setOpenSidebar(!openSidebar)
-  }
+    setOpenSidebar(!openSidebar);
+  };
 
   return (
     <>
       <header
         className="flex w-full lg:justify-between items-center px-2 sm:px-5 lg:px-20 h-20 sm:h-24 bg-black text-white fixed top-0 left-0 right-0 header"
         onClick={closeSubMenuLinks}
-        style={{zIndex: 1000}}
+        style={{ zIndex: 1000 }}
         ref={headerBottom}
       >
         <nav className="sm:flex-1">
           <ul className="hidden sm:flex justify-between">
             <li
-              className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap"
+              className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap cursor-pointer"
               onClick={displaySubMenu}
             >
-              <a
-                href="#"
-                className="mr-1 lg:mr-2"
-              >
-                For Renters
-              </a>{" "}
+              <p className="mr-1 lg:mr-2">For Renters</p>{" "}
               <BsChevronDown className="text-sm font-extrabold" />
             </li>
             <li
-              className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap for-renters"
+              className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap for-renters cursor-pointer"
               onClick={displaySubMenu}
             >
-              <a
-                href="#"
-                className="mr-1 lg:mr-2"
-              >
-                For Landlords
-              </a>{" "}
+              <p className="mr-1 lg:mr-2">For Landlords</p>{" "}
               <BsChevronDown className="text-sm font-extrabold" />
             </li>
             <li className="hover:text-brightGreen font-medium whitespace-nowrap">
@@ -76,7 +66,11 @@ const Header = () => {
             className="flex sm:hidden text-white"
             onClick={displaySidebar}
           >
-            {openSidebar ? <CgClose className="text-white text-4xl font-bold" /> : <HiOutlineMenuAlt1 className="text-white text-4xl font-bold" />}
+            {openSidebar ? (
+              <CgClose className="text-white text-4xl font-bold" />
+            ) : (
+              <HiOutlineMenuAlt1 className="text-white text-4xl font-bold" />
+            )}
           </div>
         </nav>
         <div className="flex-1 flex justify-center sm:justify-center header">

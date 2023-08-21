@@ -6,6 +6,7 @@ import OurProducts from "../components/OurProducts";
 import Banner from "../components/Banner";
 import WhyRently from "../components/WhyRently";
 import Testimonials from "../components/Testimonials";
+import { CommonQuestions } from "../components/CommonQuestions";
 
 
 const HomePage = () => {
@@ -18,6 +19,7 @@ const HomePage = () => {
       <Banner />
       <WhyRently />
       <Testimonials />
+      <CommonQuestions />
     </>
   );
 };
