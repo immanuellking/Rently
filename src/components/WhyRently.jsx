@@ -35,14 +35,15 @@ const offers = [
 
 const WhyRently = () => {
   return (
-    <section className="bg-[#F9FAFD] px-2 sm:px-5 lg:px-20 py-20 space-y-20">
+    <section className="bg-[#F9FAFD] px-2 sm:px-5 lg:px-20 py-14 sm:py-20 space-y-20">
       <div>
         <div className="space-y-4">
-          <h3 className="text-[#059A57] font-bold">OUR PRODUCTS</h3>
+          <h3 className="text-[#059A57] font-bold">WHY RENTLY</h3>
           <div className="flex flex-col lg:flex-row justify-between gap-y-4 sm:gap-y-6 lg:gap-x-20">
             <h1 className="text-black text-2xl sm:text-4xl font-bold">
               Quality apartments.
-              <br className="hidden sm:block" /> Trusted by millions of<br className="hidden sm:block lg:hidden" /> renters.
+              <br className="hidden sm:block" /> Trusted by millions of
+              <br className="hidden sm:block lg:hidden" /> renters.
             </h1>
             <p className="w-full sm:w-[35rem] lg:w-[40rem] text-sm text-[#6d6d6e] font-medium">
               We offer you access to premium residential solutions, with as
@@ -57,7 +58,10 @@ const WhyRently = () => {
         {offers.map((item, index) => {
           const { icon, bg, label, text } = item;
           return (
-            <div className="space-y-4 w-[16rem]">
+            <div
+              className="space-y-4 w-[16rem]"
+              key={index}
+            >
               <div
                 className="flex items-center justify-center w-14 h-14 rounded-3xl"
                 style={{ background: `#${bg}` }}

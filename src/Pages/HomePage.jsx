@@ -5,6 +5,7 @@ import EasytoUseTools from "../components/EasytoUseTools";
 import OurProducts from "../components/OurProducts";
 import Banner from "../components/Banner";
 import WhyRently from "../components/WhyRently";
+import Testimonials from "../components/Testimonials";
 
 
 const HomePage = () => {
@@ -16,6 +17,7 @@ const HomePage = () => {
       <OurProducts />
       <Banner />
       <WhyRently />
+      <Testimonials />
     </>
   );
 };
