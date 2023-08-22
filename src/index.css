@@ -5,3 +5,6 @@
 .hide-x-scrollbar::-webkit-scrollbar {
     display: none; /* Hide scrollbar in WebKit browsers */
 }
+body {
+    background-color: ;
+}
