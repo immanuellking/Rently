@@ -1,4 +1,7 @@
 import React from "react";
+import { AiFillInstagram, AiFillFacebook } from "react-icons/ai";
+import { FaLinkedin } from "react-icons/fa";
+import { BsTwitter } from "react-icons/bs";
 
 const footerContents = [
   {
@@ -26,7 +29,7 @@ const footerContents = [
 
 const Footer = () => {
   return (
-    <footer className="text-white px-20 py-20">
+    <footer className="text-white px-20 pt-20 pb-10">
       <div className="flex justify-between space-x-20 pb-10 border-b-[0.5px] border-b-[#3e3e3f]">
         <div className="flex-[30%] flex flex-col justify-between">
           <h1 className="text-4xl font-semibold header cursor-default">
@@ -66,9 +69,9 @@ const Footer = () => {
           })}
         </div>
       </div>
-      <div>
-        <div>
-          <p className="text-sm font-semibold cursor-pointer hover:text-brightGreen">
+      <div className="flex justify-between mt-10 px-12">
+        <div className="flex gap-x-20">
+          <p className="text-sm font-semibold cursor-pointe">
             &copy;Rently Inc, 2023
           </p>
           <p className="text-sm font-semibold cursor-pointer hover:text-brightGreen">
@@ -78,7 +81,12 @@ const Footer = () => {
             Privacy Policy
           </p>
         </div>
-        <div></div>
+        <div className="flex gap-x-5">
+          <AiFillInstagram className="text-white" size={30} />
+          <FaLinkedin className="text-white" size={29} />
+          <BsTwitter className="text-white" size={29} />
+          <AiFillFacebook className="text-white" size={29} />
+        </div>
       </div>
     </footer>
   );
