@@ -48,7 +48,7 @@ const faqsData = [
   },
 ];
 
-export const CommonQuestions = () => {
+const CommonQuestions = () => {
   const [faqs, setFaqs] = useState(faqsData);
   const displayFaq = (id) => {
     const updatedFaq = faqs.map((faq) => {
@@ -108,3 +108,5 @@ export const CommonQuestions = () => {
     </section>
   );
 };
+
+export default CommonQuestions

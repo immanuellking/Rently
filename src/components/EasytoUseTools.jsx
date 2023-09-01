@@ -4,7 +4,7 @@ import rent from "../assets/rent.webp"
 
 const EasytoUseTools = () => {
   return (
-    <section className="px-1 sm:px-0 py-5 sm:py-14 lg:py-20 space-y-8 sm:space-y-16">
+    <section className="bg-white px-1 sm:px-0 py-5 sm:py-14 lg:py-20 space-y-8 sm:space-y-16">
       <div className="w-full flex flex-col justify-center items-center gap-y-3">
         <h3 className="font-bold text-[#54A560]">DESIGNED FOR LIVING</h3>
         <h1 className="text-2xl sm:text-4xl font-bold text-center">Easy to use tools for landlord and tenants</h1>

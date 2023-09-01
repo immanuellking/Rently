@@ -6,7 +6,8 @@ import OurProducts from "../components/OurProducts";
 import Banner from "../components/Banner";
 import WhyRently from "../components/WhyRently";
 import Testimonials from "../components/Testimonials";
-import { CommonQuestions } from "../components/CommonQuestions";
+import CommonQuestions from "../components/CommonQuestions";
+import Footer from "../components/Footer";
 
 
 const HomePage = () => {
@@ -20,6 +21,7 @@ const HomePage = () => {
       <WhyRently />
       <Testimonials />
       <CommonQuestions />
+      <Footer />
     </>
   );
 };
