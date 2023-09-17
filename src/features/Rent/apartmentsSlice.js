@@ -10,11 +10,14 @@ const initialState = {
 
 const apartmentsCollectionRef = collection(db, "homes");
 
-export const fetchApartments = createAsyncThunk("apartments/fetchApartments", () => {
-  const data = getDocs(apartmentsCollectionRef);
-  console.log(data)
-  return data;
-});
+export const fetchApartments = createAsyncThunk(
+  "apartments/fetchApartments",
+  () => {
+    const data = getDocs(apartmentsCollectionRef);
+    console.log(data);
+    return data;
+  }
+);
 
 const apartmentsSlice = createSlice({
   name: "apartments",
@@ -24,11 +27,14 @@ const apartmentsSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchApartments.fulfilled, (state, action) => {
-      const filteredData = action.payload.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      console.log(filteredData)
+      const filteredData = action.payload.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      console.log(filteredData);
       state.apartments = filteredData;
       state.loading = false;
-      console.log(state.apartments)
+      console.log(state.apartments);
     });
     builder.addCase(fetchApartments.rejected, (state, action) => {
       state.loading = false;
@@ -38,4 +44,4 @@ const apartmentsSlice = createSlice({
   },
 });
 
-export default apartmentsSlice.reducer
+export default apartmentsSlice.reducer;

@@ -60,8 +60,8 @@ const Listings = () => {
   };
 
   return (
-    <section className="bg-white px-2 sm:px-5 lg:px-20 py-14 sm:py-20 flex items-start">
-      <div className="w-2/5 space-y-4">
+    <section className="bg-white px-2 sm:px-5 lg:px-20 py-20 sm:py-24 flex items-start flex-col lg:flex-row gap-y-14 lg:gap-y-0">
+      <div className="w-full sm:w-3/5 lg:w-2/5 space-y-4">
         <h3 className="text-[#059A57] font-bold">Listings</h3>
         <div className="space-y-4 sm:space-y-6 lg:space-y-8">
           <h1 className="text-black text-2xl sm:text-4xl font-bold">
@@ -110,7 +110,7 @@ const Listings = () => {
       </div>
 
       <div
-        className="w-3/5 flex items-start overflow-x-scroll hide-x-scrollbar scroll-smooth"
+        className="w-full lg:w-3/5 flex items-start overflow-x-scroll hide-x-scrollbar scroll-smooth"
         ref={scrollRef}
       >
         <div className="flex gap-x-5">
@@ -126,9 +126,9 @@ const Listings = () => {
             return (
               <div
                 key={index}
-                className="w-96 cursor-pointer"
+                className="w-80 sm:w-96 cursor-pointer"
               >
-                <div className="w-full h-[350px] rounded-3xl overflow-hidden">
+                <div className="w-full h-[300px] sm:h-[350px] rounded-3xl overflow-hidden">
                   <img
                     src={imageUrls[index]}
                     alt={`${name} house`}
