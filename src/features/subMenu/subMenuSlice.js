@@ -16,7 +16,6 @@ const subMenuSlice = createSlice({
   initialState,
   reducers: {
     openSubMenu: (state, action) => {
-        console.log(action.payload)
         const {pageLink, left, bottom} = action.payload
       const pageData = state.headerLinks.find(
         (link) => link.page === pageLink
@@ -24,7 +23,6 @@ const subMenuSlice = createSlice({
       state.headerSubLinks = pageData;
       state.isSubMenuOpen = true;
       state.location = {left, bottom}
-      console.log(state.location)
     },
     closeSubMenu: (state) => {
         state.isSubMenuOpen = false;

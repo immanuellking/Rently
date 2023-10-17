@@ -7,6 +7,8 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { SlLocationPin, SlHome } from "react-icons/sl";
 import { FiCheckCircle } from "react-icons/fi";
 
+import { useNavigate } from "react-router-dom";
+
 import { storage } from "../config/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 
@@ -14,6 +16,8 @@ const Listings = () => {
   const scrollRef = useRef();
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const available_apartments = useSelector(
     (state) => state.apartments.apartments
@@ -55,7 +59,7 @@ const Listings = () => {
     if (direction === "right") {
       scrollRef.current.scrollLeft += 300;
     } else {
-        scrollRef.current.scrollLeft -= 300;
+      scrollRef.current.scrollLeft -= 300;
     }
   };
 
@@ -74,7 +78,10 @@ const Listings = () => {
             to 24 hours power supply, treated water, waste management and and
             facility maintenance including plumbing, painting and AC repair.
           </p>
-          <button className="bg-brightBlue py-4 px-10 text-white text-sm font-semibold rounded-full">
+          <button
+            className="bg-brightBlue py-4 px-10 text-white text-sm font-semibold rounded-full"
+            onClick={() => navigate("/spaces")}
+          >
             View Listings
           </button>
           <p>
