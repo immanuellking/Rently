@@ -9,7 +9,9 @@ export default {
       colors: {
         brightBlue: "#2E48DA",
         brightGreen: "#3DDC97",
+        darkGreen: "#06A25E",
         brightGrey: "#6d6d6e",
+        darkGrey: "#BBBBBB",
       },
     },
   },
