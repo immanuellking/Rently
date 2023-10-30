@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
-import Spaces from "./Pages/Spaces";
+import SpacesPage from "./Pages/SpacesPage";
 import Header from "./components/Header";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         />
         <Route
           path="/spaces"
-          element={<Spaces />}
+          element={<SpacesPage />}
         />
       </Routes>
     </>

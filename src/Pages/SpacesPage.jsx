@@ -2,20 +2,28 @@ import React, { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 
-const Spaces = () => {
+const SpacesPage = () => {
   const [spaceOpen, setSpaceOpen] = useState(false);
   const [priceRange, setPriceRange] = useState(false);
+  const [duration, setDuration] = useState(false);
 
   const [range, setRange] = useState({ from: "", to: "" });
 
   const dropDown = (tag) => {
     if (tag === "space") {
       setPriceRange(false);
+      setDuration(false);
       setSpaceOpen(!spaceOpen);
     }
     if (tag === "range") {
       setSpaceOpen(false);
+      setDuration(false);
       setPriceRange(!priceRange);
+    }
+    if (tag === "duration") {
+      setSpaceOpen(false);
+      setPriceRange(false);
+      setDuration(!duration);
     }
   };
 
@@ -31,7 +39,7 @@ const Spaces = () => {
         <div className="mt-5 flex w-full gap-x-5">
           <div
             className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between space-y-1 ${
-              spaceOpen || priceRange ? "basis-[30%]" : "basis-[40%]"
+              spaceOpen || priceRange || duration ? "w-[22rem] " : "w-[28rem]"
             }`}
           >
             <label
@@ -57,7 +65,7 @@ const Spaces = () => {
 
           <div
             className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-6 rounded-2xl flex flex-col justify-between ${
-              spaceOpen ? "basis-[40%]" : "basis-[20%]"
+              spaceOpen ? "w-[20rem]" : "w-[16rem]"
             } relative z-[3000]`}
           >
             <p className="text-xs">TYPE OF SPACE</p>
@@ -83,7 +91,7 @@ const Spaces = () => {
                     name="space-type-entire"
                     id="space-type-entire"
                     value="entire"
-                    className="border-[0.5px] border-white h-6 w-6 rounded-2xl"
+                    className="border-[0.5px] border-white h-6 w-6 rounded-2xl cursor-pointer"
                     style={{ background: "transparent" }}
                   />
                   <label htmlFor="space-type-entire">
@@ -97,7 +105,7 @@ const Spaces = () => {
                     name="space-type-shared"
                     id="space-type-entire"
                     value="shared"
-                    className="border-[0.5px] border-white h-6 w-6 rounded-2xl"
+                    className="border-[0.5px] border-white h-6 w-6 rounded-2xl cursor-pointer"
                     style={{ background: "transparent" }}
                   />
                   <label htmlFor="space-type-entire">
@@ -117,7 +125,7 @@ const Spaces = () => {
 
           <div
             className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between ${
-              priceRange ? "basis-[40%]" : "basis-[20%]"
+              priceRange ? "w-[20rem]" : "w-[16rem]"
             } relative`}
           >
             <p className="text-xs">PRICE</p>
@@ -193,20 +201,77 @@ const Spaces = () => {
             </div>
           </div>
 
-          <div className="text-darkGrey backdrop-blur-lg bg-white/20 py-4 px-7 rounded-2xl flex flex-col justify-between space-y-1 basis-[20%]">
+          <div
+            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between ${
+              duration ? "w-[20rem]" : "w-[16rem]"
+            } relative`}
+          >
             <p className="text-xs">DURATION</p>
-            <div className="flex justify-between items-end">
+            <div
+              className="flex justify-between items-end"
+              onClick={() => dropDown("duration")}
+            >
               <p>Select Duration</p>
               <BsChevronDown
                 size={18}
                 color="#fff"
               />
             </div>
+
+            <div
+              className={`absolute top-[5.4rem] left-0 w-full ${
+                duration ? "flex" : "hidden"
+              } `}
+            >
+              <div className="backdrop-blur-lg bg-white/10 w-full mx-4 py-6 px-5 space-y-5 rounded-b-2xl">
+                <div className="flex items-center gap-x-4">
+                  <input
+                    type="checkbox"
+                    name="space-duration-monthly"
+                    id="space-duration-monthly"
+                    value="duration-monthly"
+                    className="border-[0.5px] border-white h-6 w-6 rounded-2xl cursor-pointer"
+                    style={{ background: "transparent" }}
+                  />
+                  <label
+                    htmlFor="space-duration-monthly"
+                    className="text-sm font-bold text-white"
+                  >
+                    Monthly
+                  </label>
+                </div>
+                <div className="flex items-center gap-x-4">
+                  <input
+                    type="checkbox"
+                    name="space-duration-annual"
+                    id="space-duration-annual"
+                    value="duration-monthly"
+                    className="border-[0.5px] border-white h-6 w-6 rounded-2xl cursor-pointer"
+                    style={{ background: "transparent" }}
+                  />
+                  <label
+                    htmlFor="space-duration-annual"
+                    className="text-sm font-bold text-white"
+                  >
+                    Annual
+                  </label>
+                </div>
+
+                <div className="w-full flex justify-end gap-x-3 text-white">
+                  <button className="py-3 px-2 text-center ">Clear</button>
+                  <button className="py-3 px-8 text-center rounded-[5rem] bg-brightBlue">
+                    Save
+                  </button>
+                </div>
+
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
   );
 };
 
-export default Spaces;
+export default SpacesPage;
