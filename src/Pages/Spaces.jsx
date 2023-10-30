@@ -4,6 +4,20 @@ import { FiSearch } from "react-icons/fi";
 
 const Spaces = () => {
   const [spaceOpen, setSpaceOpen] = useState(false);
+  const [priceRange, setPriceRange] = useState(false);
+
+  const [range, setRange] = useState({ from: "", to: "" });
+
+  const dropDown = (tag) => {
+    if (tag === "space") {
+      setPriceRange(false);
+      setSpaceOpen(!spaceOpen);
+    }
+    if (tag === "range") {
+      setSpaceOpen(false);
+      setPriceRange(!priceRange);
+    }
+  };
 
   return (
     <section className="w-full">
@@ -15,7 +29,11 @@ const Spaces = () => {
           </h1>
         </div>
         <div className="mt-5 flex w-full gap-x-5">
-          <div className="text-darkGrey backdrop-blur-lg bg-white/20 py-4 px-7 rounded-2xl flex flex-col justify-between space-y-1 basis-[40%]">
+          <div
+            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between space-y-1 ${
+              spaceOpen || priceRange ? "basis-[30%]" : "basis-[40%]"
+            }`}
+          >
             <label
               htmlFor="spaces-search"
               className="text-xs"
@@ -36,26 +54,29 @@ const Spaces = () => {
               />
             </div>
           </div>
+
           <div
-            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between space-y-1 ${
+            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-6 rounded-2xl flex flex-col justify-between ${
               spaceOpen ? "basis-[40%]" : "basis-[20%]"
-            } relative`}
+            } relative z-[3000]`}
           >
             <p className="text-xs">TYPE OF SPACE</p>
-            <div className="flex justify-between items-end">
+            <div
+              className="flex justify-between items-end cursor-pointer"
+              onClick={() => dropDown("space")}
+            >
               <p>Select Space Type</p>
               <BsChevronDown
                 size={18}
                 color="#fff"
-                onClick={() => setSpaceOpen(!spaceOpen)}
               />
             </div>
             <div
-              className={`absolute top-[6rem] left-0 w-full ${
+              className={`absolute top-[5.4rem] left-0 w-full ${
                 spaceOpen ? "flex" : "hidden"
-              } `}
+              } -z-[2000]`}
             >
-              <div className="backdrop-blur-lg bg-white/20 w-full mx-4 py-6 px-5 space-y-4">
+              <div className="backdrop-blur-lg bg-white/20 w-full mx-4 py-6 px-5 space-y-4 rounded-b-2xl">
                 <div className="flex items-center gap-x-2">
                   <input
                     type="checkbox"
@@ -86,21 +107,92 @@ const Spaces = () => {
                 </div>
                 <div className="w-full flex justify-end gap-x-3 text-white">
                   <button className="py-3 px-2 text-center ">Clear</button>
-                  <button className="py-3 px-8 text-center rounded-[5rem] bg-brightBlue">Save</button>
+                  <button className="py-3 px-8 text-center rounded-[5rem] bg-brightBlue">
+                    Save
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="text-darkGrey backdrop-blur-lg bg-white/20 py-4 px-7 rounded-2xl flex flex-col justify-between space-y-1 basis-[20%]">
+
+          <div
+            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between ${
+              priceRange ? "basis-[40%]" : "basis-[20%]"
+            } relative`}
+          >
             <p className="text-xs">PRICE</p>
-            <div className="flex justify-between items-end">
+            <div
+              className="flex justify-between items-end cursor-pointer"
+              onClick={() => dropDown("range")}
+            >
               <p>Select Price Range</p>
               <BsChevronDown
                 size={18}
                 color="#fff"
               />
             </div>
+            <div
+              className={`absolute top-[5.4rem] left-0 w-full ${
+                priceRange ? "flex" : "hidden"
+              } `}
+            >
+              <div className="backdrop-blur-lg bg-white/20 w-full mx-4 py-6 px-5 space-y-5 rounded-b-2xl">
+                <div className="flex justify-between">
+                  <div className="flex flex-col space-y-1">
+                    <label
+                      htmlFor="range-from"
+                      className="text-xs"
+                    >
+                      From
+                    </label>
+                    <input
+                      type="text"
+                      name="range-from"
+                      id="range-from"
+                      placeholder="0"
+                      value={range.from}
+                      onChange={(e) =>
+                        setRange((prev) => ({
+                          from: e.target.value,
+                          to: prev.to,
+                        }))
+                      }
+                      className="w-24 px-2 h-11 bg-[#4B4B4B] border-[0.5px] border-gray-400 outline-none rounded-sm"
+                    />
+                  </div>
+                  <div className="flex flex-col space-y-1">
+                    <label
+                      htmlFor="range-to"
+                      className="text-xs"
+                    >
+                      To
+                    </label>
+                    <input
+                      type="text"
+                      name="range-to"
+                      id="range-to"
+                      placeholder="0"
+                      value={range.to}
+                      onChange={(e) =>
+                        setRange((prev) => ({
+                          from: prev.from,
+                          to: e.target.value,
+                        }))
+                      }
+                      className="w-24 px-2 h-11 bg-[#4B4B4B] border-[0.2px] border-gray-400 outline-none rounded-sm"
+                    />
+                  </div>
+                </div>
+                <div className="w-full flex justify-end gap-x-3 text-white">
+                  <button className="py-3 px-2 text-center ">Clear</button>
+                  <button className="py-3 px-8 text-center rounded-[5rem] bg-brightBlue">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
+
           <div className="text-darkGrey backdrop-blur-lg bg-white/20 py-4 px-7 rounded-2xl flex flex-col justify-between space-y-1 basis-[20%]">
             <p className="text-xs">DURATION</p>
             <div className="flex justify-between items-end">
