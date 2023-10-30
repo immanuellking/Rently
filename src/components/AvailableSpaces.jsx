@@ -2,7 +2,9 @@ import React from 'react'
 
 const AvailableSpaces = () => {
   return (
-    <div>AvailableSpaces</div>
+    <div className="w-full bg-white h-[100vh]">
+
+    </div>
   )
 }
 
