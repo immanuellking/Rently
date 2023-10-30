@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
+import AvailableSpaces from "../components/AvailableSpaces";
 
 const SpacesPage = () => {
   const [spaceOpen, setSpaceOpen] = useState(false);
@@ -28,18 +29,19 @@ const SpacesPage = () => {
   };
 
   return (
-    <section className="w-full">
-      <div className="w-full mt-24 px-20">
+    <section className="w-full px-5 lg:px-20">
+      <div className="w-full mt-24">
         <div className="space-y-4">
           <h3 className="text-darkGreen font-bold">Explore Rently</h3>
-          <h1 className="text-4xl font-extrabold text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
             Available Spaces
           </h1>
         </div>
-        <div className="mt-5 flex w-full gap-x-5">
+
+        <div className="mt-5 flex flex-wrap  w-full gap-5">
           <div
-            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between space-y-1 ${
-              spaceOpen || priceRange || duration ? "w-[22rem] " : "w-[28rem]"
+            className={`text-darkGrey backdrop-blur-lg bg-white/10 h-20  px-7 rounded-2xl flex flex-col justify-center ${
+              spaceOpen || priceRange || duration ? "w-full lg:w-[20rem] " : "w-full lg:w-[24rem]"
             }`}
           >
             <label
@@ -64,9 +66,10 @@ const SpacesPage = () => {
           </div>
 
           <div
-            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-6 rounded-2xl flex flex-col justify-between ${
-              spaceOpen ? "w-[20rem]" : "w-[16rem]"
-            } relative z-[3000]`}
+            className={`text-darkGrey backdrop-blur-lg bg-white/10 h-20 px-6 rounded-2xl flex flex-col justify-center space-y-2 ${
+              spaceOpen ? "w-full sm:w-[18rem] lg:w-[18rem]" : "w-full sm:w-[18rem] lg:w-[15rem]"
+            } relative`}
+            style={{ zIndex: spaceOpen ? 2 : 1 }}
           >
             <p className="text-xs">TYPE OF SPACE</p>
             <div
@@ -80,11 +83,11 @@ const SpacesPage = () => {
               />
             </div>
             <div
-              className={`absolute top-[5.4rem] left-0 w-full ${
+              className={`absolute top-[4.5rem] left-0 w-full ${
                 spaceOpen ? "flex" : "hidden"
-              } -z-[2000]`}
+              } `}
             >
-              <div className="backdrop-blur-lg bg-white/20 w-full mx-4 py-6 px-5 space-y-4 rounded-b-2xl">
+              <div className="bg-[#282828] w-full mx-4 py-5 px-4 space-y-5 rounded-b-2xl">
                 <div className="flex items-center gap-x-2">
                   <input
                     type="checkbox"
@@ -124,9 +127,10 @@ const SpacesPage = () => {
           </div>
 
           <div
-            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between ${
-              priceRange ? "w-[20rem]" : "w-[16rem]"
+            className={`text-darkGrey backdrop-blur-lg bg-white/10 h-20 px-7 rounded-2xl flex flex-col justify-center space-y-3 ${
+              priceRange ? "w-full sm:w-[18rem] lg:w-[20rem]" : "w-full sm:w-[18rem] lg:w-[15rem]"
             } relative`}
+            style={{ zIndex: priceRange ? 2 : 1 }}
           >
             <p className="text-xs">PRICE</p>
             <div
@@ -140,11 +144,11 @@ const SpacesPage = () => {
               />
             </div>
             <div
-              className={`absolute top-[5.4rem] left-0 w-full ${
+              className={`absolute top-[4.3rem] left-0 w-full ${
                 priceRange ? "flex" : "hidden"
               } `}
             >
-              <div className="backdrop-blur-lg bg-white/20 w-full mx-4 py-6 px-5 space-y-5 rounded-b-2xl">
+              <div className="bg-[#282828] w-full mx-4 py-6 px-5 space-y-5 rounded-b-2xl">
                 <div className="flex justify-between">
                   <div className="flex flex-col space-y-1">
                     <label
@@ -202,13 +206,14 @@ const SpacesPage = () => {
           </div>
 
           <div
-            className={`text-darkGrey backdrop-blur-lg bg-white/10 py-4 px-7 rounded-2xl flex flex-col justify-between ${
-              duration ? "w-[20rem]" : "w-[16rem]"
+            className={`text-darkGrey backdrop-blur-lg bg-white/10 h-20 px-7 rounded-2xl flex flex-col justify-center space-y-3 ${
+              duration ? "w-full sm:w-[18rem] lg:w-[20rem]" : "w-full sm:w-[18rem] lg:w-[15rem]"
             } relative`}
+            style={{ zIndex: duration ? 2 : 1 }}
           >
             <p className="text-xs">DURATION</p>
             <div
-              className="flex justify-between items-end"
+              className="flex justify-between items-end cursor-pointer"
               onClick={() => dropDown("duration")}
             >
               <p>Select Duration</p>
@@ -219,11 +224,11 @@ const SpacesPage = () => {
             </div>
 
             <div
-              className={`absolute top-[5.4rem] left-0 w-full ${
+              className={`absolute top-[4.3rem] left-0 w-full ${
                 duration ? "flex" : "hidden"
               } `}
             >
-              <div className="backdrop-blur-lg bg-white/10 w-full mx-4 py-6 px-5 space-y-5 rounded-b-2xl">
+              <div className="bg-[#282828] w-full mx-4 py-6 px-5 space-y-5 rounded-b-2xl">
                 <div className="flex items-center gap-x-4">
                   <input
                     type="checkbox"
@@ -270,6 +275,9 @@ const SpacesPage = () => {
 
         </div>
       </div>
+
+      <AvailableSpaces />
+
     </section>
   );
 };
