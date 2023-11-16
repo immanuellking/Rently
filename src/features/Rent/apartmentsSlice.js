@@ -12,29 +12,35 @@ const apartmentsCollectionRef = collection(db, "homes");
 
 export const fetchApartments = createAsyncThunk(
   "apartments/fetchApartments",
-  () => {
-    const data = getDocs(apartmentsCollectionRef);
-    console.log(data);
-    return data;
+  async () => {
+    try {
+      const data = await getDocs(apartmentsCollectionRef);
+    const filteredData = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    console.log("QUUUEEERRRRRYYYYY", filteredData);
+    return filteredData;
+    } catch (error) {
+      console.log("SOMETHING WENT WRONG!!!!")
+    }
   }
 );
 
 const apartmentsSlice = createSlice({
   name: "apartments",
   initialState,
+  
   extraReducers: (builder) => {
     builder.addCase(fetchApartments.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(fetchApartments.fulfilled, (state, action) => {
-      const filteredData = action.payload.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      console.log(filteredData);
+      const filteredData = action.payload
+      console.log("FULfilled", filteredData);
       state.apartments = filteredData;
       state.loading = false;
-      console.log(state.apartments);
+      console.log("APPPARTTments", state.apartments);
     });
     builder.addCase(fetchApartments.rejected, (state, action) => {
       state.loading = false;

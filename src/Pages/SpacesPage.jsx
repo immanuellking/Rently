@@ -28,10 +28,16 @@ const SpacesPage = () => {
     }
   };
 
+  const closeDropDowns = () => {
+    setSpaceOpen(false);
+    setPriceRange(false);
+    setDuration(false);
+  } 
+
   return (
     <section className="w-full">
-      <div className="w-full mt-24 py-24 px-5 lg:px-20">
-        <div className="space-y-4">
+      <div className="w-full pt-28 sm:pt-32 pb-10 sm:pb-14 lg:pb-20 px-5 lg:px-20" >
+        <div className="space-y-2 sm:space-y-4">
           <h3 className="text-darkGreen font-bold">Explore Rently</h3>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
             Available Spaces

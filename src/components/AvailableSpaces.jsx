@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchApartments } from "../features/Rent/apartmentsSlice";
 
 const AvailableSpaces = () => {
-  return (
-    <div className="w-full bg-white h-[100vh]">
+  const dispatch = useDispatch();
+  const available_apartments = useSelector(
+    (state) => state.apartments.apartments
+  );
+  useEffect(() => {
+    dispatch(fetchApartments());
+  }, []);
 
-    </div>
-  )
-}
+  return <div className="w-full bg-white h-[100vh]"></div>;
+};
 
-export default AvailableSpaces
+export default AvailableSpaces;

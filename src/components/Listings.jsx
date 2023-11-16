@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchApartments } from "../features/Rent/apartmentsSlice";
@@ -9,8 +9,6 @@ import { FiCheckCircle } from "react-icons/fi";
 
 import { useNavigate } from "react-router-dom";
 
-import { storage } from "../config/firebase";
-import { ref, getDownloadURL } from "firebase/storage";
 
 const Listings = () => {
   const scrollRef = useRef();
@@ -23,37 +21,10 @@ const Listings = () => {
     (state) => state.apartments.apartments
   );
 
-  const [imageUrls, setImageUrls] = useState([]);
-
   useEffect(() => {
     dispatch(fetchApartments());
   }, []);
 
-  useEffect(() => {
-    const fetchImageUrls = async () => {
-      const urls = await Promise.all(
-        available_apartments.map(async (apartment) => {
-          const {
-            images: { image_1 },
-          } = apartment;
-
-          const imageRef = ref(storage, image_1);
-
-          return getDownloadURL(imageRef)
-            .then((url) => {
-              console.log("Image Downloaded Successfully", url);
-              return url;
-            })
-            .catch((error) => {
-              console.log("Error Occured", error);
-            });
-        })
-      );
-      setImageUrls(urls);
-    };
-
-    fetchImageUrls();
-  }, [available_apartments]);
 
   const scrollDirection = (direction) => {
     if (direction === "right") {
@@ -121,14 +92,15 @@ const Listings = () => {
         ref={scrollRef}
       >
         <div className="flex gap-x-5">
-          {available_apartments.map((apartment, index) => {
+          {available_apartments.map( (apartment, index) => {
             const {
               name,
               location,
               apartment_details: { is_space_shared, bath, bed },
               is_all_bills_inclusive,
               rent_details: { rent, service_charge },
-            } = apartment;
+              images: {image_1}
+            } = apartment; 
 
             return (
               <div
@@ -137,7 +109,7 @@ const Listings = () => {
               >
                 <div className="w-full h-[300px] sm:h-[350px] rounded-3xl overflow-hidden">
                   <img
-                    src={imageUrls[index]}
+                    src={image_1}
                     alt={`${name} house`}
                     className="w-full h-full"
                   />
