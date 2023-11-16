@@ -19,10 +19,9 @@ export const fetchApartments = createAsyncThunk(
       ...doc.data(),
       id: doc.id,
     }));
-    console.log("QUUUEEERRRRRYYYYY", filteredData);
     return filteredData;
     } catch (error) {
-      console.log("SOMETHING WENT WRONG!!!!")
+      console.log("SOMETHING WENT WRONG!!!!", error)
     }
   }
 );
@@ -40,7 +39,6 @@ const apartmentsSlice = createSlice({
       console.log("FULfilled", filteredData);
       state.apartments = filteredData;
       state.loading = false;
-      console.log("APPPARTTments", state.apartments);
     });
     builder.addCase(fetchApartments.rejected, (state, action) => {
       state.loading = false;

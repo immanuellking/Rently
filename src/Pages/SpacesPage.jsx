@@ -3,6 +3,8 @@ import { BsChevronDown } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import AvailableSpaces from "../components/AvailableSpaces";
 
+import Footer from "../components/Footer"
+
 const SpacesPage = () => {
   const [spaceOpen, setSpaceOpen] = useState(false);
   const [priceRange, setPriceRange] = useState(false);
@@ -35,8 +37,9 @@ const SpacesPage = () => {
   } 
 
   return (
-    <section className="w-full">
-      <div className="w-full pt-28 sm:pt-32 pb-10 sm:pb-14 lg:pb-20 px-5 lg:px-20" >
+    <>
+    <section className="w-screen">
+      <div className="w-screen pt-28 sm:pt-32 pb-10 sm:pb-14 lg:pb-20 px-5 lg:px-20" >
         <div className="space-y-2 sm:space-y-4">
           <h3 className="text-darkGreen font-bold">Explore Rently</h3>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
@@ -284,7 +287,9 @@ const SpacesPage = () => {
 
       <AvailableSpaces />
 
+    {/* <Footer /> */}
     </section>
+    </>
   );
 };
 

@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    margin: 0;
+    padding: 0;
+}
+
 .hide-x-scrollbar::-webkit-scrollbar {
     display: none; /* Hide scrollbar in WebKit browsers */
 }
 body {
-    background: black;
+    /* background: black; */
+    width: 100vw;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }

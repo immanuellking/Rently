@@ -11,7 +11,7 @@ import Listings from "../components/Listings";
 
 const HomePage = () => {
   return (
-    <>
+    <div className="w-[100vw] m-0 p-0">
       <HeroBanner />
       <EasytoUseTools />
       <OurProducts />
@@ -20,8 +20,8 @@ const HomePage = () => {
       <Listings />
       <Testimonials />
       <CommonQuestions />
-      <Footer />
-    </>
+      {/* <Footer /> */}
+    </div>
   );
 };
 
