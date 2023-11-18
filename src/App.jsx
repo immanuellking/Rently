@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <div className="w-full">
-      {/* <Header /> */}
+      <Header />
       <Routes>
         <Route
           path="/"
@@ -17,8 +17,9 @@ function App() {
           path="/spaces"
           element={<SpacesPage />}
         />
+        <Route path="/apartment/:spaceId" />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

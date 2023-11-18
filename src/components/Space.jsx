@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 
+import {useNavigate} from "react-router-dom"
+
 import { SlLocationPin, SlHome } from "react-icons/sl";
 import { FiCheckCircle } from "react-icons/fi";
 
@@ -17,11 +19,16 @@ const Space = ({
   is_all_bills_inclusive,
   apartment_details,
   rent_details,
-  name
+  name,
+  id
 }) => {
+
   const { image_1, image_2, image_3 } = images;
   const { is_space_shared, bath, bed } = apartment_details;
   const { rent, service_charge } = rent_details;
+
+  const navigate = useNavigate();
+
   return (
     <div className="w-full col-span-1 row-span-1 bg-white p-2 rounded-lg">
       <Swiper
@@ -33,7 +40,7 @@ const Space = ({
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper h-[250px] sm:h-[270px]"
+        className="mySwiper h-[250px] sm:h-[270px] xl:h-[300px]"
       >
         <SwiperSlide
           className="w-full h-full"
@@ -67,7 +74,7 @@ const Space = ({
         </SwiperSlide>
       </Swiper>
 
-      <div className="w-full px-2">
+      <div className="w-full px-2" onClick={() => navigate(`/apartment/${id}`) }>
         <div className="w-full py-4 space-y-2 border-b-[1px] border-brightGrey border-opacity-30">
           <div className="w-full flex justify-between">
             <h1 className="text-xl font-bold">{name}</h1>
