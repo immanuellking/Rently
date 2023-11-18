@@ -13,7 +13,7 @@ const AvailableSpaces = () => {
     dispatch(fetchApartments());
   }, []);
 
-  return <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 bg-[#F4F4F4] px-5 lg:px-14 py-24">
+  return <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 bg-[#F4F4F4] px-5 lg:px-14 py-14 lg:py-24">
     {available_apartments.map((apartment, index) => {
       return <Space key={index} {...apartment} />
     })}

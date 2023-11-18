@@ -35,7 +35,7 @@ const Listings = () => {
   };
 
   return (
-    <section className="bg-white px-2 sm:px-5 lg:px-20 py-20 sm:py-24 flex items-start flex-col lg:flex-row gap-y-14 lg:gap-y-0">
+    <section className="bg-white w-full px-2 sm:px-5 lg:px-20 py-20 sm:py-24 flex items-start flex-col lg:flex-row gap-y-14 lg:gap-y-0">
       <div className="w-full sm:w-3/5 lg:w-2/5 space-y-4">
         <h3 className="text-[#059A57] font-bold">Listings</h3>
         <div className="space-y-4 sm:space-y-6 lg:space-y-8">

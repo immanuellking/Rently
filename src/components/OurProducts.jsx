@@ -64,7 +64,7 @@ const OurProducts = () => {
   };
 
   return (
-    <section className="bg-black py-20 px-4 sm:px-8 lg:px-20 space-y-10 sm:space-y-14">
+    <section className="bg-black w-full py-20 px-4 sm:px-8 lg:px-20 space-y-10 sm:space-y-14">
       <div className="flex flex-col items-center sm:items-start space-y-3 sm:space-y-5">
         <h3 className="text-[#059A57] font-bold">OUR PRODUCTS</h3>
         <h1 className="text-white text-center sm:text-left text-2xl sm:text-4xl font-bold">

@@ -59,7 +59,7 @@ const CommonQuestions = () => {
   };
 
   return (
-    <section className="bg-[#F9FAFD] px-2 sm:px-5 lg:px-20 py-14 sm:py-20 space-y-20">
+    <section className="bg-[#F9FAFD] w-full px-2 sm:px-5 lg:px-20 py-14 sm:py-20 space-y-20">
       <div>
         <div className="space-y-4">
           <h3 className="text-[#059A57] font-bold">COMMON QUESTIONS</h3>

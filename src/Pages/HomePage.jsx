@@ -11,7 +11,7 @@ import Listings from "../components/Listings";
 
 const HomePage = () => {
   return (
-    <div className="w-[100vw] m-0 p-0">
+    <div className="w-full m-0 p-0">
       <HeroBanner />
       <EasytoUseTools />
       <OurProducts />

@@ -43,7 +43,7 @@ const Testimonials = () => {
 
   const { name, status, text, image } = feedbacks[activeTab];
   return (
-    <section className="flex flex-col-reverse gap-y-10 sm:gap-y-0 sm:flex-row items-center sm:h-[70vh] lg:h-[90vh] bg-black pb-10 sm:pb-0 sm:pl-10 lg:pl-20">
+    <section className="w-full flex flex-col-reverse gap-y-10 sm:gap-y-0 sm:flex-row items-center sm:h-[70vh] lg:h-[90vh] bg-black pb-10 sm:pb-0 sm:pl-10 lg:pl-20">
       <div className="sm:flex-1 space-y-3 px-5 sm:px-0 lg:py-7">
         <h3 className="text-[#059A57] text-sm sm:text-base font-bold">
           TESTIMONIALS

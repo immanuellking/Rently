@@ -33,7 +33,7 @@ const Space = ({
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper h-[270px]"
+        className="mySwiper h-[250px] sm:h-[270px]"
       >
         <SwiperSlide
           className="w-full h-full"

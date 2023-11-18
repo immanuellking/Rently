@@ -38,7 +38,7 @@ const SpacesPage = () => {
 
   return (
     <>
-    <section className="w-screen">
+    <section className="w-full">
       <div className="w-screen pt-28 sm:pt-32 pb-10 sm:pb-14 lg:pb-20 px-5 lg:px-20" >
         <div className="space-y-2 sm:space-y-4">
           <h3 className="text-darkGreen font-bold">Explore Rently</h3>
