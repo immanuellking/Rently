@@ -3,6 +3,7 @@ import HomePage from "./Pages/HomePage";
 import SpacesPage from "./Pages/SpacesPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SpaceDetailsPage from "./Pages/SpaceDetailsPage";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           path="/spaces"
           element={<SpacesPage />}
         />
-        <Route path="/apartment/:spaceId" />
+        <Route path="/apartment/:spaceId" element={<SpaceDetailsPage />} />
       </Routes>
       <Footer />
     </div>

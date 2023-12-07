@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
 
 import { SlLocationPin, SlHome } from "react-icons/sl";
 import { FiCheckCircle } from "react-icons/fi";
@@ -13,6 +15,7 @@ import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper/modules";
 
+
 const Space = ({
   images,
   location,
@@ -20,17 +23,17 @@ const Space = ({
   apartment_details,
   rent_details,
   name,
-  id
+  id,
 }) => {
-
   const { image_1, image_2, image_3 } = images;
   const { is_space_shared, bath, bed } = apartment_details;
   const { rent, service_charge } = rent_details;
 
   const navigate = useNavigate();
 
+
   return (
-    <div className="w-full col-span-1 row-span-1 bg-white p-2 rounded-lg">
+    <div className="w-full col-span-1 row-span-1 bg-white p-2 rounded-lg ">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -74,7 +77,10 @@ const Space = ({
         </SwiperSlide>
       </Swiper>
 
-      <div className="w-full px-2" onClick={() => navigate(`/apartment/${id}`) }>
+      <div
+        className="w-full px-2"
+        onClick={() => navigate(`/apartment/${id}`)}
+      >
         <div className="w-full py-4 space-y-2 border-b-[1px] border-brightGrey border-opacity-30">
           <div className="w-full flex justify-between">
             <h1 className="text-xl font-bold">{name}</h1>

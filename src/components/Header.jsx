@@ -34,57 +34,59 @@ const Header = () => {
   return (
     <>
       <header
-        className="flex w-full lg:justify-between items-center px-2 sm:px-5 lg:px-20 h-20 sm:h-24 bg-black text-white fixed top-0 left-0 right-0 header"
+        className="w-full h-20 sm:h-24 bg-black text-white fixed top-0 left-0 right-0 header"
         onClick={closeSubMenuLinks}
         style={{ zIndex: 1000 }}
         ref={headerBottom}
       >
-        <nav className="sm:flex-1">
-          <ul className="hidden sm:flex justify-between">
-            <li
-              className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap cursor-pointer"
-              onClick={displaySubMenu}
-            >
-              <p className="mr-1 lg:mr-2">For Renters</p>{" "}
-              <BsChevronDown className="text-sm font-extrabold" />
-            </li>
-            <li
-              className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap for-renters cursor-pointer"
-              onClick={displaySubMenu}
-            >
-              <p className="mr-1 lg:mr-2">For Landlords</p>{" "}
-              <BsChevronDown className="text-sm font-extrabold" />
-            </li>
-            <li className="hover:text-brightGreen font-medium whitespace-nowrap">
-              <a href="#">Contact</a>
-            </li>
-            {/* <li className="hover:text-brightGreen font-medium whitespace-nowrap">
+        <div className="w-full h-full relative flex lg:justify-between items-center px-2 sm:px-5 lg:px-20">
+          <nav className="sm:flex-1">
+            <ul className="hidden md:flex justify-between">
+              <li
+                className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap cursor-pointer"
+                onClick={displaySubMenu}
+              >
+                <p className="mr-1 lg:mr-2">For Renters</p>{" "}
+                <BsChevronDown className="text-sm font-extrabold" />
+              </li>
+              <li
+                className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap for-renters cursor-pointer"
+                onClick={displaySubMenu}
+              >
+                <p className="mr-1 lg:mr-2">For Landlords</p>{" "}
+                <BsChevronDown className="text-sm font-extrabold" />
+              </li>
+              <li className="hover:text-brightGreen font-medium whitespace-nowrap">
+                <a href="#">Contact</a>
+              </li>
+              {/* <li className="hover:text-brightGreen font-medium whitespace-nowrap">
             <a href="#">About</a>
           </li> */}
-          </ul>
-          <div
-            className="flex sm:hidden text-white"
-            onClick={displaySidebar}
-          >
-            {openSidebar ? (
-              <CgClose className="text-white text-4xl font-bold" />
-            ) : (
-              <HiOutlineMenuAlt1 className="text-white text-4xl font-bold" />
-            )}
+            </ul>
+            <div
+              className="flex md:hidden text-white"
+              onClick={displaySidebar}
+            >
+              {openSidebar ? (
+                <CgClose className="text-white text-4xl font-bold" />
+              ) : (
+                <HiOutlineMenuAlt1 className="text-white text-4xl font-bold" />
+              )}
+            </div>
+          </nav>
+          <div className="md:flex-1 md:flex absolute left-[40%] md:static md:justify-center header">
+            <h1 className="text-4xl font-semibold header cursor-default">
+              Rently.
+            </h1>
           </div>
-        </nav>
-        <div className="flex-1 flex justify-center sm:justify-center header">
-          <h1 className="text-4xl font-semibold header cursor-default">
-            Rently.
-          </h1>
-        </div>
-        <div className="flex-1 hidden sm:flex justify-end header">
-          <button className="hover:text-brightGreen font-medium whitespace-nowrap">
-            Log In
-          </button>
-          <button className="bg-brightBlue py-2 px-4 ml-4 rounded-3xl font-medium whitespace-nowrap">
-            Create Account
-          </button>
+          <div className="flex-1 hidden md:flex justify-end header">
+            <button className="hover:text-brightGreen font-medium whitespace-nowrap">
+              Log In
+            </button>
+            <button className="bg-brightBlue py-2 px-4 ml-4 rounded-3xl font-medium whitespace-nowrap">
+              Create Account
+            </button>
+          </div>
         </div>
       </header>
       <SubMenuView />
