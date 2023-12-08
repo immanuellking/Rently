@@ -124,10 +124,10 @@ const SpaceDetailsPage = () => {
               </div>
             </div>
 
-            <div className="basis-[50%]">
+            <div className="basis-[50%] border-[1px]">
               <div>
                 <h4 className="text-sm font-bold">Rent Price</h4>
-                <h1 className="text-4xl font-bold">NGN {rent_details?.rent} <span className="text-sm">/Year</span></h1>
+                <h1 className="text-4xl font-bold">NGN {rent_details?.rent.toLocaleString()} <span className="text-sm">/Year</span></h1>
               </div>
             </div>
           </div>
