@@ -34,7 +34,7 @@ const SpaceDetailsPage = () => {
     apartment_description,
     amenities,
     house_rules,
-    rent_details
+    rent_details,
   } = singleApartment;
   // const { bed, is_bathroom_shared, is_furnished, power, is_space_shared} = apartment_details;
 
@@ -66,7 +66,7 @@ const SpaceDetailsPage = () => {
             </div>
           </div>
 
-          <div className="pt-10 px-5 lg:px-20 flex">
+          <div className="pt-10 px-5 lg:px-20 flex space-x-10">
             <div className="basis-[50%]">
               <div>
                 <h1 className="text-4xl font-extrabold text-[000628]">
@@ -116,7 +116,10 @@ const SpaceDetailsPage = () => {
                       key={index}
                       className="flex items-center gap-x-2"
                     >
-                      <FaCheckCircle color="#2E48DA" size={20}/>
+                      <FaCheckCircle
+                        color="#2E48DA"
+                        size={20}
+                      />
                       <p className="text-brightGrey leading-5">{item}</p>
                     </div>
                   ))}
@@ -124,10 +127,59 @@ const SpaceDetailsPage = () => {
               </div>
             </div>
 
-            <div className="basis-[50%] border-[1px]">
-              <div>
-                <h4 className="text-sm font-bold">Rent Price</h4>
-                <h1 className="text-4xl font-bold">NGN {rent_details?.rent.toLocaleString()} <span className="text-sm">/Year</span></h1>
+            <div className="basis-[50%] border-[1px] p-10 flex justify-center items-center">
+              <div className="w-full">
+                <h4 className="text-base font-bold">Rent Price</h4>
+                <h1 className="text-4xl font-bold">
+                  NGN{" "}
+                  {(
+                    rent_details?.rent + rent_details?.service_charge
+                  ).toLocaleString()}{" "}
+                  <span className="text-sm">/Year</span>
+                </h1>
+
+                <div className="mt-10 space-y-5 border-b-[1px] pb-4">
+                  <div className="flex justify-between">
+                    <p className="font-semibold">Rent</p>
+                    <p>NGN {rent_details?.rent.toLocaleString()} yearly</p>
+                  </div>
+                  <div className="flex justify-between">
+                    <p className="font-semibold">Service Charge</p>
+                    <p>NGN {rent_details?.service_charge.toLocaleString()}</p>
+                  </div>
+                  <div className="flex justify-between">
+                    <p className="font-semibold">Refundable security deposit</p>
+                    <p>
+                      NGN{" "}
+                      {rent_details?.refundable_security_deposit.toLocaleString()}
+                    </p>
+                  </div>
+                  <div className="flex justify-between">
+                    <p className="font-semibold">One-time booking fee</p>
+                    <p>NGN {rent_details?.booking_fee.toLocaleString()}</p>
+                  </div>
+                  <div className="flex justify-between">
+                    <p className="font-semibold">VAT</p>
+                    <p>NGN {rent_details?.vat.toLocaleString()}</p>
+                  </div>
+                </div>
+                <div className="py-4 space-y-5">
+                  <div className="flex justify-between">
+                    <p className="font-semibold">Total</p>
+                    <p className="text-2xl font-bold">
+                      NGN{" "}
+                      {(
+                        rent_details?.rent +
+                        rent_details?.service_charge +
+                        rent_details?.refundable_security_deposit +
+                        rent_details?.booking_fee +
+                        rent_details?.vat
+                      ).toLocaleString()}
+                    </p>
+                  </div>
+                  
+                  <button className="w-full py-4 bg-brightBlue rounded-3xl font-bold text-white">Login</button>
+                </div>
               </div>
             </div>
           </div>
