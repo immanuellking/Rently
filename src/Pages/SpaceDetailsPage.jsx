@@ -66,14 +66,14 @@ const SpaceDetailsPage = () => {
             </div>
           </div>
 
-          <div className="pt-10 px-5 lg:px-20 flex space-x-10">
+          <div className="pt-10 px-5 lg:px-20 flex flex-col lg:flex-row lg:space-x-10">
             <div className="basis-[50%]">
               <div>
-                <h1 className="text-4xl font-extrabold text-[000628]">
+                <h1 className="text-3xl md:text-4xl font-extrabold text-[000628]">
                   {name}
                 </h1>
-                <h2 className="text-lg text-brightGrey">{location}</h2>
-                <div className="mt-2 flex text-brightGrey gap-x-5">
+                <h2 className="text-sm md:text-lg text-brightGrey">{location}</h2>
+                <div className="mt-2 text-sm flex flex-wrap text-brightGrey gap-x-3 md:gap-x-5">
                   <p>{apartment_details?.bed} bed(s)</p>
                   <p>{apartment_details?.bath} bath(s)</p>
                   {apartment_details?.is_space_shared ? (
@@ -86,7 +86,7 @@ const SpaceDetailsPage = () => {
                   <p>{apartment_details?.power_supply} hrs power</p>
                 </div>
               </div>
-              <div className="border-[1px] border-x-0 flex items-center gap-x-8 font-semibold py-3 my-5">
+              <div className="border-[1px] border-x-0 flex flex-wrap items-center gap-x-8 font-semibold py-3 my-5">
                 <p className="text-brightGrey text-sm">
                   APARTMENT AVAILABLE FROM
                 </p>
@@ -97,7 +97,7 @@ const SpaceDetailsPage = () => {
               </div>
               <div className="border-[1px] border-x-0 my-5 py-4">
                 <h1 className="font-semibold">Amenities</h1>
-                <div className="grid grid-cols-2 gap-y-5 pt-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 pt-8">
                   {amenities?.map((item, index) => (
                     <p
                       key={index}
@@ -110,7 +110,7 @@ const SpaceDetailsPage = () => {
               </div>
               <div className="border-[1px] border-t-0 border-x-0 my-5 py-4 pb-8">
                 <h1 className="font-semibold">House Rules</h1>
-                <div className="grid grid-cols-2 gap-y-5 pt-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 pt-8">
                   {house_rules?.map((item, index) => (
                     <div
                       key={index}
@@ -127,10 +127,10 @@ const SpaceDetailsPage = () => {
               </div>
             </div>
 
-            <div className="basis-[50%] border-[1px] p-10 flex justify-center items-center">
+            <div className="basis-[50%] border-[1px] p-4 md:p-10 flex justify-center items-center">
               <div className="w-full">
                 <h4 className="text-base font-bold">Rent Price</h4>
-                <h1 className="text-4xl font-bold">
+                <h1 className="text-2xl md:text-4xl font-bold">
                   NGN{" "}
                   {(
                     rent_details?.rent + rent_details?.service_charge
@@ -138,28 +138,28 @@ const SpaceDetailsPage = () => {
                   <span className="text-sm">/Year</span>
                 </h1>
 
-                <div className="mt-10 space-y-5 border-b-[1px] pb-4">
+                <div className="mt-8 md:mt-10 space-y-3 md:space-y-5 border-b-[1px] pb-4">
                   <div className="flex justify-between">
-                    <p className="font-semibold">Rent</p>
+                    <p className="font-semibold text-sm md:text-base">Rent</p>
                     <p>NGN {rent_details?.rent.toLocaleString()} yearly</p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="font-semibold">Service Charge</p>
+                    <p className="font-semibold text-sm md:text-base">Service Charge</p>
                     <p>NGN {rent_details?.service_charge.toLocaleString()}</p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="font-semibold">Refundable security deposit</p>
+                    <p className="font-semibold text-sm md:text-base">Refundable security deposit</p>
                     <p>
                       NGN{" "}
                       {rent_details?.refundable_security_deposit.toLocaleString()}
                     </p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="font-semibold">One-time booking fee</p>
+                    <p className="font-semibold text-sm md:text-base">One-time booking fee</p>
                     <p>NGN {rent_details?.booking_fee.toLocaleString()}</p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="font-semibold">VAT</p>
+                    <p className="font-semibold text-sm md:text-base">VAT</p>
                     <p>NGN {rent_details?.vat.toLocaleString()}</p>
                   </div>
                 </div>
