@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 
+import Map from "../components/Map";
+
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -41,23 +43,23 @@ const SpaceDetailsPage = () => {
   return (
     <>
       {singleApartment && (
-        <div className="w-full pt-28 sm:pt-32 pb-10 sm:pb-14 lg:pb-20 bg-white">
-          <div className="grid grid-cols-6 md:grid-cols-5 grid-rows-2 gap-4 w-full h-[27rem] px-5 lg:px-20">
-            <div className="w-full col-span-6 md:col-span-3 md:row-span-2 rounded-2xl overflow-hidden">
+        <div className="w-full pt-20 sm:pt-32 pb-10 sm:pb-14 lg:pb-20 bg-white">
+          <div className="grid grid-cols-6 md:grid-cols-5 grid-rows-2 gap-4 w-full h-[27rem] px-0 lg:px-20">
+            <div className="w-full col-span-6 md:col-span-3 md:row-span-2 rounded-none lg:rounded-2xl overflow-hidden">
               <img
                 src={image_1}
                 alt="image"
                 className="w-full h-full"
               />
             </div>
-            <div className="w-full col-span-3 md:col-span-2 rounded-2xl overflow-hidden">
+            <div className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden">
               <img
                 src={image_2}
                 alt="image"
                 className="w-full h-full"
               />
             </div>
-            <div className="w-full col-span-3 md:col-span-2 rounded-2xl overflow-hidden">
+            <div className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden">
               <img
                 src={image_3}
                 alt="image"
@@ -72,7 +74,9 @@ const SpaceDetailsPage = () => {
                 <h1 className="text-3xl md:text-4xl font-extrabold text-[000628]">
                   {name}
                 </h1>
-                <h2 className="text-sm md:text-lg text-brightGrey">{location}</h2>
+                <h2 className="text-sm md:text-lg text-brightGrey">
+                  {location}
+                </h2>
                 <div className="mt-2 text-sm flex flex-wrap text-brightGrey gap-x-3 md:gap-x-5">
                   <p>{apartment_details?.bed} bed(s)</p>
                   <p>{apartment_details?.bath} bath(s)</p>
@@ -144,18 +148,24 @@ const SpaceDetailsPage = () => {
                     <p>NGN {rent_details?.rent.toLocaleString()} yearly</p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="font-semibold text-sm md:text-base">Service Charge</p>
+                    <p className="font-semibold text-sm md:text-base">
+                      Service Charge
+                    </p>
                     <p>NGN {rent_details?.service_charge.toLocaleString()}</p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="font-semibold text-sm md:text-base">Refundable security deposit</p>
+                    <p className="font-semibold text-sm md:text-base">
+                      Refundable security deposit
+                    </p>
                     <p>
                       NGN{" "}
                       {rent_details?.refundable_security_deposit.toLocaleString()}
                     </p>
                   </div>
                   <div className="flex justify-between">
-                    <p className="font-semibold text-sm md:text-base">One-time booking fee</p>
+                    <p className="font-semibold text-sm md:text-base">
+                      One-time booking fee
+                    </p>
                     <p>NGN {rent_details?.booking_fee.toLocaleString()}</p>
                   </div>
                   <div className="flex justify-between">
@@ -177,10 +187,18 @@ const SpaceDetailsPage = () => {
                       ).toLocaleString()}
                     </p>
                   </div>
-                  
-                  <button className="w-full py-4 bg-brightBlue rounded-3xl font-bold text-white">Login</button>
+
+                  <button className="w-full py-4 bg-brightBlue rounded-3xl font-bold text-white">
+                    Login
+                  </button>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="w-full flex flex-col mt-10 space-y-4 px-5 lg:px-20 ">
+            <h2 className="font-semibold uppercase">Location</h2>
+            <div className="flex justify-center">
+            <Map />
             </div>
           </div>
         </div>
