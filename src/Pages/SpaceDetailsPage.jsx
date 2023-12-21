@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Map from "../components/Map";
 
@@ -10,6 +10,9 @@ import { FaCheckCircle } from "react-icons/fa";
 
 import { fetchSingleApartment } from "../features/Rent/apartmentsSlice";
 
+import { BiImages } from "react-icons/bi";
+import SpaceImagesModal from "../components/SpaceImagesModal";
+
 const SpaceDetailsPage = () => {
   const { singleApartment, loading, error } = useSelector(
     (state) => state.apartments
@@ -18,6 +21,8 @@ const SpaceDetailsPage = () => {
   const dispatch = useDispatch();
 
   const { spaceId } = useParams();
+
+  const [imagesModalVisible, setImagesModalVisible] = useState(false)
 
   useEffect(() => {
     dispatch(fetchSingleApartment(spaceId));
@@ -59,12 +64,19 @@ const SpaceDetailsPage = () => {
                 className="w-full h-full"
               />
             </div>
-            <div className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden">
+            <div className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden relative">
               <img
                 src={image_3}
                 alt="image"
                 className="w-full h-full"
               />
+              <div 
+                className="absolute bottom-5 right-5 bg-[rgba(0,0,0,0.7)] cursor-pointer flex justify-center items-center py-3 px-7 space-x-2 rounded-lg"
+                onClick={() => setImagesModalVisible(true)}
+              >
+                <BiImages color="#fff" size={20} />
+                <p className="text-white font-semibold">View all photos</p>
+              </div>
             </div>
           </div>
 
@@ -203,6 +215,9 @@ const SpaceDetailsPage = () => {
           </div>
         </div>
       )}
+      <SpaceImagesModal 
+        imagesModalVisible={imagesModalVisible}
+      />
     </>
   );
 };
