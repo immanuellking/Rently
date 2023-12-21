@@ -39,7 +39,7 @@ const SpaceImagesModal = ({ setImagesModalVisible, spaceImages }) => {
           />
         </div>
 
-        <div className="w-4/5 m-auto">
+        <div className="w-full lg:w-4/5 m-auto">
           <Swiper
             slidesPerView={1}
             spaceBetween={30}
@@ -49,7 +49,7 @@ const SpaceImagesModal = ({ setImagesModalVisible, spaceImages }) => {
             }}
             navigation={true}
             modules={[Pagination, Navigation]}
-            className=" h-[500px]"
+            className=" h-[300px] sm:h-[450px] lg:h-[500px]"
           >
             {images.map((image, index) => (
               <SwiperSlide
