@@ -22,16 +22,17 @@ const SpaceDetailsPage = () => {
 
   const { spaceId } = useParams();
 
-  const [imagesModalVisible, setImagesModalVisible] = useState(false)
+  const [imagesModalVisible, setImagesModalVisible] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleApartment(spaceId));
   }, []);
 
   console.log("SINGLE AaAAAPP", singleApartment);
-  const image_1 = singleApartment?.images?.image_1;
-  const image_2 = singleApartment?.images?.image_2;
-  const image_3 = singleApartment?.images?.image_3;
+  const spaceImages = singleApartment?.images;
+  const image_1 = spaceImages?.image_1;
+  const image_2 = spaceImages?.image_2;
+  const image_3 = spaceImages?.image_3;
 
   const {
     name,
@@ -50,31 +51,43 @@ const SpaceDetailsPage = () => {
       {singleApartment && (
         <div className="w-full pt-20 sm:pt-32 pb-10 sm:pb-14 lg:pb-20 bg-white">
           <div className="grid grid-cols-6 md:grid-cols-5 grid-rows-2 gap-4 w-full h-[27rem] px-0 lg:px-20">
-            <div className="w-full col-span-6 md:col-span-3 md:row-span-2 rounded-none lg:rounded-2xl overflow-hidden">
+            <div
+              className="w-full col-span-6 md:col-span-3 md:row-span-2 rounded-none lg:rounded-2xl overflow-hidden cursor-pointer"
+              onClick={() => setImagesModalVisible(true)}
+            >
               <img
                 src={image_1}
                 alt="image"
                 className="w-full h-full"
               />
             </div>
-            <div className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden">
+            <div
+              className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden cursor-pointer"
+              onClick={() => setImagesModalVisible(true)}
+            >
               <img
                 src={image_2}
                 alt="image"
                 className="w-full h-full"
               />
             </div>
-            <div className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden relative">
+            <div
+              className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden relative cursor-pointer"
+              onClick={() => setImagesModalVisible(true)}
+            >
               <img
                 src={image_3}
                 alt="image"
                 className="w-full h-full"
               />
-              <div 
+              <div
                 className="absolute bottom-5 right-5 bg-[rgba(0,0,0,0.7)] cursor-pointer flex justify-center items-center py-3 px-7 space-x-2 rounded-lg"
                 onClick={() => setImagesModalVisible(true)}
               >
-                <BiImages color="#fff" size={20} />
+                <BiImages
+                  color="#fff"
+                  size={20}
+                />
                 <p className="text-white font-semibold">View all photos</p>
               </div>
             </div>
@@ -210,14 +223,18 @@ const SpaceDetailsPage = () => {
           <div className="w-full flex flex-col mt-10 space-y-4 px-5 lg:px-20 ">
             <h2 className="font-semibold uppercase">Location</h2>
             <div className="flex justify-center">
-            <Map />
+              <Map />
             </div>
           </div>
         </div>
       )}
-      <SpaceImagesModal 
-        imagesModalVisible={imagesModalVisible}
-      />
+
+      {imagesModalVisible && (
+        <SpaceImagesModal
+          setImagesModalVisible={setImagesModalVisible}
+          spaceImages={spaceImages}
+        />
+      )}
     </>
   );
 };
