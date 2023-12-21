@@ -81,14 +81,14 @@ const SpaceDetailsPage = () => {
                 className="w-full h-full"
               />
               <div
-                className="absolute bottom-5 right-5 bg-[rgba(0,0,0,0.7)] cursor-pointer flex justify-center items-center py-3 px-7 space-x-2 rounded-lg"
+                className="absolute bottom-1 lg:bottom-5 right-1 lg:right-5 bg-[rgba(0,0,0,0.7)] cursor-pointer flex justify-center items-center py-2 lg:py-3 px-3 lg:px-7 space-x-2 rounded-lg"
                 onClick={() => setImagesModalVisible(true)}
               >
                 <BiImages
                   color="#fff"
                   size={20}
                 />
-                <p className="text-white font-semibold">View all photos</p>
+                <p className="text-white text-sm lg:text-base font-semibold">View all photos</p>
               </div>
             </div>
           </div>
