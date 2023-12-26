@@ -6,9 +6,11 @@ import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
 import SubMenuView from "../features/subMenu/SubMenuView";
 import MobileSubMenuView from "../features/subMenu/MobileSubMenuView";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [openSidebar, setOpenSidebar] = useState(false);
   const headerBottom = useRef();
@@ -83,7 +85,7 @@ const Header = () => {
             <button className="hover:text-brightGreen font-medium whitespace-nowrap">
               Log In
             </button>
-            <button className="bg-brightBlue py-2 px-4 ml-4 rounded-3xl font-medium whitespace-nowrap">
+            <button className="bg-brightBlue py-2 px-4 ml-4 rounded-3xl font-medium whitespace-nowrap" onClick={() => navigate("/create-account")}>
               Create Account
             </button>
           </div>
