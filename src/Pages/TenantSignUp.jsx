@@ -3,8 +3,8 @@ import { IoPersonOutline } from "react-icons/io5";
 import { GoMail } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../config/firebase";
 
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
@@ -33,15 +33,22 @@ const TenantSignUp = () => {
         lastName: lastName,
         userId: user?.uid,
       });
-
+      console.log("User registered successfully!");
+    } catch (error) {
+      console.error("Error creating user:", error);
+    } finally {
       setFirstName("");
       setLastName("");
       setEmail("");
       setPassword("");
+    }
+  };
 
-      console.log("User registered successfully!");
+  const signUpGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.error(error);
     }
   };
 
@@ -60,7 +67,10 @@ const TenantSignUp = () => {
         <div className="w-full flex flex-col items-center gap-y-3">
           <h1 className="text-2xl font-bold m-0 p-0">Become a Rently Member</h1>
           <p>Join Rently Today.</p>
-          <button className="flex items-center border-[1px] border-darkGrey bg-white px-4 py-3 rounded-3xl text-sm font-semibold">
+          <button
+            className="flex items-center border-[1px] border-darkGrey bg-white px-4 py-3 rounded-3xl text-sm font-semibold"
+            onClick={signUpGoogle}
+          >
             <div className="w-4 h-4 mr-2">
               <svg
                 version="1.1"
@@ -178,14 +188,14 @@ const TenantSignUp = () => {
               </div>
             </div>
           </div>
-          <button className="w-full text-center px-6 py-4 bg-[#6276E3] text-white font-bold mt-8 rounded-full">
+          <button className="w-full text-center px-6 py-4 bg-[rgb(46,72,218)] text-white font-bold mt-8 rounded-full">
             Sign Up
           </button>
         </form>
         <div className="w-full flex justify-center mt-5">
           <p className="text-sm">
             Have an account?{" "}
-            <span className="text-[#6276E3] cursor-pointer">Sign In</span>
+            <span className="text-[rgb(46,72,218)] cursor-pointer">Sign In</span>
           </p>
         </div>
       </div>
