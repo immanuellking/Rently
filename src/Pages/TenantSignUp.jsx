@@ -1,9 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import { GoMail } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firebase";
+
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../config/firebase";
+
 const TenantSignUp = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const userInfoRef = collection(db, "users");
+
+  const signUp = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredentials);
+      const user = userCredentials?.user;
+
+      await addDoc(userInfoRef, {
+        firstName: firstName,
+        lastName: lastName,
+        userId: user?.uid,
+      });
+
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+
+      console.log("User registered successfully!");
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
+  };
+
   return (
     <div
       className="w-screen h-full py-10"
@@ -55,7 +96,10 @@ const TenantSignUp = () => {
           </button>
         </div>
 
-        <form className="mt-20">
+        <form
+          className="mt-20"
+          onSubmit={signUp}
+        >
           <div className="grid grid-cols-2 gap-x-10 gap-y-5">
             <div className="space-y-1">
               <label
@@ -71,6 +115,8 @@ const TenantSignUp = () => {
                   type="text"
                   name="first_name"
                   placeholder="Enter First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
             </div>
@@ -88,6 +134,8 @@ const TenantSignUp = () => {
                   type="text"
                   name="last_name"
                   placeholder="Enter Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
             </div>
@@ -105,6 +153,8 @@ const TenantSignUp = () => {
                   type="email"
                   name="email"
                   placeholder="Enter your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -122,19 +172,21 @@ const TenantSignUp = () => {
                   type="password"
                   name="password"
                   placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full text-center px-6 py-4 bg-[#6276E3] text-white font-bold mt-8 rounded-full"
-          >
+          <button className="w-full text-center px-6 py-4 bg-[#6276E3] text-white font-bold mt-8 rounded-full">
             Sign Up
           </button>
         </form>
         <div className="w-full flex justify-center mt-5">
-          <p className="text-sm">Have an account? <span className="text-[#6276E3] cursor-pointer">Sign In</span></p>
+          <p className="text-sm">
+            Have an account?{" "}
+            <span className="text-[#6276E3] cursor-pointer">Sign In</span>
+          </p>
         </div>
       </div>
     </div>
