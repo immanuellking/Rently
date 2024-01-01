@@ -3,7 +3,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { GoMail } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth, googleProvider } from "../config/firebase";
 
 import { collection, addDoc } from "firebase/firestore";
@@ -39,6 +39,7 @@ const TenantSignUp = () => {
         userId: user?.uid,
       });
       console.log("User registered successfully!");
+      await signOut(auth);
       
     } catch (error) {
       console.error("Error creating user:", error);
@@ -58,7 +59,7 @@ const TenantSignUp = () => {
     }
   };
 
-  console.log(auth.currentUser.email);
+  console.log(auth?.currentUser?.email);
 
   return (
     <div
