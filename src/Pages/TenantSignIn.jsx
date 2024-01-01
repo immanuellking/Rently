@@ -6,48 +6,50 @@ import { auth, googleProvider } from "../config/firebase";
 
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
+import { useNavigate } from "react-router-dom";
+
 const TenantSignIn = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-  
-    const navigate = useNavigate();
-  
-    const signUp = async (e) => {
-      e.preventDefault();
-      try {
-        const userCredentials = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        console.log(userCredentials);
-        const user = userCredentials?.user;
-  
-        await addDoc(userInfoRef, {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          userId: user?.uid,
-        });
-        console.log("User Signed In successfully!");
-        navigate("/")
-      } catch (error) {
-        console.error("Error signing in user:", error);
-      } finally {
-        setEmail("");
-        setPassword("");
-      }
-    };
-  
-    const signInGoogle = async () => {
-      try {
-        await signInWithPopup(auth, googleProvider);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
-    console.log(auth?.currentUser?.email);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const signIn = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredentials);
+      const user = userCredentials?.user;
+
+      await addDoc(userInfoRef, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        userId: user?.uid,
+      });
+      console.log("User Signed In successfully!");
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing in user:", error);
+    } finally {
+      setEmail("");
+      setPassword("");
+    }
+  };
+
+  const signInGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  console.log(auth?.currentUser?.email);
 
   return (
     <div
@@ -65,7 +67,9 @@ const TenantSignIn = () => {
           <h1 className="text-[22px] md:text-2xl font-bold m-0 p-0">
             Welcome Back
           </h1>
-          <p className="text-sm md:text-base">Sign into your Rently account to continue.</p>
+          <p className="text-sm md:text-base">
+            Sign into your Rently account to continue.
+          </p>
           <button
             className="flex items-center border-[1px] border-darkGrey bg-white px-4 py-3 rounded-3xl text-sm font-semibold"
             onClick={signInGoogle}

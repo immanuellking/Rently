@@ -82,10 +82,16 @@ const Header = () => {
             </h1>
           </div>
           <div className="flex-1 hidden md:flex justify-end header">
-            <button className="hover:text-brightGreen font-medium whitespace-nowrap">
+            <button
+              className="hover:text-brightGreen font-medium whitespace-nowrap"
+              onClick={() => navigate("/login")}
+            >
               Log In
             </button>
-            <button className="bg-brightBlue py-2 px-4 ml-4 rounded-3xl font-medium whitespace-nowrap" onClick={() => navigate("/create-account")}>
+            <button
+              className="bg-brightBlue py-2 px-4 ml-4 rounded-3xl font-medium whitespace-nowrap"
+              onClick={() => navigate("/create-account")}
+            >
               Create Account
             </button>
           </div>

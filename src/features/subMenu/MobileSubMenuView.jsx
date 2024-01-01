@@ -1,15 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { learnLinks } from "../../data";
+import { useNavigate } from "react-router-dom";
 
 const MobileSubMenuView = ({ openSidebar }) => {
   const mobileSubLinks = useSelector((state) => state.subMenu.headerLinks);
+  const navigate = useNavigate();
+
   return (
     <section
       className={`w-full block md:hidden bg-black px-6 py-8 space-y-8 fixed left-0 right-0 ${
         openSidebar ? "translate-y-0" : "-translate-y-[1100px]"
       } ease-in-out duration-1000 h-screen overflow-y-auto`}
-      style={{zIndex: 900}}
+      style={{ zIndex: 900 }}
     >
       {mobileSubLinks.map((subLink, index) => {
         const { page, links } = subLink;
@@ -65,10 +68,16 @@ const MobileSubMenuView = ({ openSidebar }) => {
       </article>
 
       <div className="flex flex-col header gap-y-4">
-        <button className="bg-brightBlue text-white text-lg font-semibold py-3 w-80 px-4 rounded-3xl whitespace-nowrap">
+        <button
+          className="bg-brightBlue text-white text-lg font-semibold py-3 w-80 px-4 rounded-3xl whitespace-nowrap"
+          onClick={() => navigate("/create-account")}
+        >
           Create Account
         </button>
-        <button className="text-white text-lg font-semibold border-2 border-white py-3 w-80 px-4 rounded-3xl whitespace-nowrap">
+        <button
+          className="text-white text-lg font-semibold border-2 border-white py-3 w-80 px-4 rounded-3xl whitespace-nowrap"
+          onClick={() => navigate("/login")}
+        >
           Sign In
         </button>
       </div>

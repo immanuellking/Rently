@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SpaceDetailsPage from "./Pages/SpaceDetailsPage";
 import TenantSignUp from "./Pages/TenantSignUp";
+import TenantSignIn from "./Pages/TenantSignIn";
 
 function App() {
   const [showHeaderAndFooter, setShowHeaderAndFooter] = useState(true);
@@ -18,7 +19,10 @@ function App() {
     setCurrentPath(location.pathname);
   }, [location.pathname]);
 
-  const noHeaderAndFooterRoutes = useMemo(() => ["/create-account", "/login"], []);
+  const noHeaderAndFooterRoutes = useMemo(
+    () => ["/create-account", "/login"],
+    []
+  );
 
   useEffect(() => {
     for (let i = 0; i < noHeaderAndFooterRoutes.length; i++) {
