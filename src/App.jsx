@@ -18,7 +18,7 @@ function App() {
     setCurrentPath(location.pathname);
   }, [location.pathname]);
 
-  const noHeaderAndFooterRoutes = useMemo(() => ["/create-account"], []);
+  const noHeaderAndFooterRoutes = useMemo(() => ["/create-account", "/login"], []);
 
   useEffect(() => {
     for (let i = 0; i < noHeaderAndFooterRoutes.length; i++) {
@@ -49,6 +49,10 @@ function App() {
         <Route
           path="/create-account"
           element={<TenantSignUp />}
+        />
+        <Route
+          path="/login"
+          element={<TenantSignIn />}
         />
       </Routes>
       {showHeaderAndFooter && <Footer />}
