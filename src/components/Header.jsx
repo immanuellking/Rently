@@ -8,6 +8,8 @@ import SubMenuView from "../features/subMenu/SubMenuView";
 import MobileSubMenuView from "../features/subMenu/MobileSubMenuView";
 import { useNavigate } from "react-router-dom";
 
+import UserInfoView from "../features/user/userInfoView";
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -94,6 +96,7 @@ const Header = () => {
             >
               Create Account
             </button>
+            <UserInfoView />
           </div>
         </div>
       </header>

@@ -24,13 +24,6 @@ const TenantSignIn = () => {
       );
       console.log(userCredentials);
       const user = userCredentials?.user;
-
-      await addDoc(userInfoRef, {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        userId: user?.uid,
-      });
       console.log("User Signed In successfully!");
       navigate("/");
     } catch (error) {
@@ -62,12 +55,12 @@ const TenantSignIn = () => {
         // backgroundRepeat: "no-repeat"
       }}
     >
-      <div className="bg-[rgba(255,255,255,0.71)] backdrop-blur-[5.9px] rounded-[16px] border-[1px] border-[rgba(255,255,255,0.5)] w-[95%] md:w-[90%] lg:w-[70%] m-auto py-5 px-5 md:py-10 md:px-6 lg:px-12">
+      <div className="bg-[rgba(255,255,255,0.71)] backdrop-blur-[5.9px] rounded-[16px] border-[1px] border-[rgba(255,255,255,0.5)] w-[95%] md:w-[50%] lg:w-[40%] m-auto py-5 px-5 md:py-10 md:px-6 lg:px-12">
         <div className="w-full flex flex-col items-center gap-y-3">
           <h1 className="text-[22px] md:text-2xl font-bold m-0 p-0">
             Welcome Back
           </h1>
-          <p className="text-sm md:text-base">
+          <p className="text-sm md:text-base text-center">
             Sign into your Rently account to continue.
           </p>
           <button
@@ -113,7 +106,7 @@ const TenantSignIn = () => {
           className="mt-10 md:mt-12 lg:mt-20"
           onSubmit={signIn}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3 md:gap-y-5">
+          <div className="grid grid-cols-1 gap-x-10 gap-y-3 md:gap-y-5">
             <div className="space-y-1">
               <label
                 htmlFor="email"
@@ -154,14 +147,17 @@ const TenantSignIn = () => {
             </div>
           </div>
           <button className="w-full text-center px-6 py-3 md:py-4 bg-[rgb(46,72,218)] text-white font-bold mt-8 rounded-full">
-            Sign Up
+            Sign In
           </button>
         </form>
         <div className="w-full flex justify-center mt-2 md:mt-5">
           <p className="text-sm">
-            Have an account?{" "}
-            <span className="text-[rgb(46,72,218)] cursor-pointer">
-              Sign In
+            New To Rently?{" "}
+            <span
+              className="text-[rgb(46,72,218)] cursor-pointer"
+              onClick={() => navigate("/create-account")}
+            >
+              Sign Up
             </span>
           </p>
         </div>

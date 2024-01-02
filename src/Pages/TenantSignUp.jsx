@@ -40,6 +40,7 @@ const TenantSignUp = () => {
       });
       console.log("User registered successfully!");
       await signOut(auth);
+      navigate("/login")
       
     } catch (error) {
       console.error("Error creating user:", error);
@@ -206,7 +207,7 @@ const TenantSignUp = () => {
         <div className="w-full flex justify-center mt-2 md:mt-5">
           <p className="text-sm">
             Have an account?{" "}
-            <span className="text-[rgb(46,72,218)] cursor-pointer">
+            <span className="text-[rgb(46,72,218)] cursor-pointer" onClick={() => navigate("/login")} >
               Sign In
             </span>
           </p>
