@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../../config/firebase";
 import { fetchUserInfo } from "./userInfoSlice";
 import { useSelector } from "react-redux";
-import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from "react-redux";
 
 const UserInfoView = () => {
-  const first = useSelector((state) => state.userInfo);
+  const dispatch = useDispatch();
+
+  const { firstName } = useSelector((state) => state.userInfo);
   const [currentUserEmail, setCurrentUserEmail] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setCurrentUserEmail(user.email);
-        fetchUserInfo(user.email);
+        dispatch(fetchUserInfo(user.email));
       } else {
         setCurrentUserEmail(null);
       }
@@ -21,11 +23,12 @@ const UserInfoView = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 
-  console.log("FIIIRRRRTTTSSSSS UUUSS", first);
+  console.log("FIIIRRRRTTTSSSSS", first);
+  console.log("FIIIRRRRTTTSSSSS Emmmmaiiiill", currentUserEmail);
 
-  return <div>userInfoView</div>;
+  return <div>{firstName}</div>;
 };
 
 export default UserInfoView;
