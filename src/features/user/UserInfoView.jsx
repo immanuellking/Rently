@@ -8,15 +8,11 @@ const UserInfoView = () => {
   const dispatch = useDispatch();
 
   const { firstName } = useSelector((state) => state.userInfo);
-  const [currentUserEmail, setCurrentUserEmail] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setCurrentUserEmail(user.email);
         dispatch(fetchUserInfo(user.email));
-      } else {
-        setCurrentUserEmail(null);
       }
     });
 
@@ -24,9 +20,6 @@ const UserInfoView = () => {
       unsubscribe();
     };
   }, [dispatch]);
-
-  console.log("FIIIRRRRTTTSSSSS", first);
-  console.log("FIIIRRRRTTTSSSSS Emmmmaiiiill", currentUserEmail);
 
   return <div>{firstName}</div>;
 };

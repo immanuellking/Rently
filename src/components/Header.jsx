@@ -16,13 +16,16 @@ const Header = () => {
 
   const [openSidebar, setOpenSidebar] = useState(false);
   const headerBottom = useRef();
+  const forRentersRef = useRef();
+  const forLandordsRef = useRef();
 
-  const displaySubMenu = (e) => {
-    const pageLink = e.target.textContent;
-    const tempBtn = e.target.getBoundingClientRect();
+  const displaySubMenu = (e, ref, pageLink) => {
+    console.log("REFFF", ref.current);
+    const tempBtn = ref.current.getBoundingClientRect();
     const left = tempBtn.left;
     const bottom = headerBottom.current.getBoundingClientRect().bottom;
     dispatch(openSubMenu({ pageLink, left, bottom }));
+    console.log("EEEEEEEEEEEEEE", e);
   };
 
   const closeSubMenuLinks = (e) => {
@@ -45,17 +48,19 @@ const Header = () => {
       >
         <div className="w-full h-full relative flex lg:justify-between items-center px-2 sm:px-5 lg:px-20">
           <nav className="sm:flex-1">
-            <ul className="hidden md:flex justify-between">
+            <ul className="hidden md:flex space-x-4">
               <li
                 className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap cursor-pointer"
-                onClick={displaySubMenu}
+                onClick={(e) => displaySubMenu(e, forRentersRef, "For Renters")}
+                ref={forRentersRef}
               >
                 <p className="mr-1 lg:mr-2">For Renters</p>{" "}
                 <BsChevronDown className="text-sm font-extrabold" />
               </li>
               <li
                 className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap for-renters cursor-pointer"
-                onClick={displaySubMenu}
+                onClick={(e) => displaySubMenu(e, forLandordsRef, "For Landlords")}
+                ref={forLandordsRef}
               >
                 <p className="mr-1 lg:mr-2">For Landlords</p>{" "}
                 <BsChevronDown className="text-sm font-extrabold" />

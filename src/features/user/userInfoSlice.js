@@ -33,7 +33,7 @@ export const fetchUserInfo = createAsyncThunk(
 
       console.log(error);
       return error;
-      
+
     }
   }
 );
@@ -51,7 +51,6 @@ const userInfoSlice = createSlice({
       state.loading = false;
       state.firstName = user.firstName;
       state.lastName = user.lastName;
-      console.log("Paylooooaaaadd", user);
     });
     builder.addCase(fetchUserInfo.rejected, (state) => {
       state.loading = false;
