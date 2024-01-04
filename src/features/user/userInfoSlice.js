@@ -3,8 +3,8 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
 const initialState = {
-  firstName: "",
-  lastName: "",
+  first_name: "",
+  last_name: "",
   loading: false,
 };
 
@@ -49,13 +49,13 @@ const userInfoSlice = createSlice({
     builder.addCase(fetchUserInfo.fulfilled, (state, action) => {
       const user = action.payload;
       state.loading = false;
-      state.firstName = user.firstName;
-      state.lastName = user.lastName;
+      state.first_name = user.firstName;
+      state.last_name = user.lastName;
     });
     builder.addCase(fetchUserInfo.rejected, (state) => {
       state.loading = false;
-      state.firstName = "";
-      state.lastName = "";
+      state.first_name = "";
+      state.last_name = "";
     });
   },
 });

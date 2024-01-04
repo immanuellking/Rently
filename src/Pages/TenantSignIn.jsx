@@ -3,8 +3,8 @@ import { GoMail } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 
 import { auth, googleProvider } from "../config/firebase";
-
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,8 @@ const TenantSignIn = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+
 
   const signIn = async (e) => {
     e.preventDefault();
@@ -36,7 +38,40 @@ const TenantSignIn = () => {
 
   const signInGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      console.log("Sign In GOOOGle", user);
+
+      const user_email = user.email;
+
+      const userCollectionRef = collection(db, "users");
+      const q = query(userCollectionRef, where("email", "==", user_email));
+
+      const querySnapshot = getDocs(q);
+
+      if (!querySnapshot.empty) {
+
+        console.log('User with this email already exists in the database.');
+  
+      } else {
+
+      const firstName = user.displayName.split(" ")[0];
+      const lastName = user.displayName.split(" ").slice(1).join(" ");
+      const userId = user.uid;
+
+      await addDoc(userCollectionRef, {
+        firstName: firstName,
+        lastName: lastName,
+        email: user_email,
+        userId: user?.uid,
+      });
+
+      }
+
+      console.log("User Signed In successfully!");
+      navigate("/");
+
+
     } catch (error) {
       console.error(error);
     }

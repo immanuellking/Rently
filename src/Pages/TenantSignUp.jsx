@@ -3,7 +3,11 @@ import { IoPersonOutline } from "react-icons/io5";
 import { GoMail } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 
-import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import { auth, googleProvider } from "../config/firebase";
 
 import { collection, addDoc } from "firebase/firestore";
@@ -19,7 +23,7 @@ const TenantSignUp = () => {
 
   const navigate = useNavigate();
 
-  const userInfoRef = collection(db, "users");
+  const userCollectionRef = collection(db, "users");
 
   const signUp = async (e) => {
     e.preventDefault();
@@ -32,7 +36,7 @@ const TenantSignUp = () => {
       console.log(userCredentials);
       const user = userCredentials?.user;
 
-      await addDoc(userInfoRef, {
+      await addDoc(userCollectionRef, {
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -40,8 +44,7 @@ const TenantSignUp = () => {
       });
       console.log("User registered successfully!");
       await signOut(auth);
-      navigate("/login")
-      
+      navigate("/login");
     } catch (error) {
       console.error("Error creating user:", error);
     } finally {
@@ -54,13 +57,33 @@ const TenantSignUp = () => {
 
   const signUpGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      console.log("GOOOGGGLLLEEEE", user);
+
+      const email = user.email;  
+      const firstName = user.displayName.split(" ")[0];
+      const lastName = user.displayName.split(" ").slice(1).join(" ");
+      const userId = user.uid;
+
+      await addDoc(userCollectionRef, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        userId: user?.uid,
+      });
+
+      console.log("User registered successfully!");
+      navigate("/");
+
     } catch (error) {
       console.error(error);
     }
   };
 
   console.log(auth?.currentUser?.email);
+  
 
   return (
     <div
@@ -207,7 +230,10 @@ const TenantSignUp = () => {
         <div className="w-full flex justify-center mt-2 md:mt-5">
           <p className="text-sm">
             Have an account?{" "}
-            <span className="text-[rgb(46,72,218)] cursor-pointer" onClick={() => navigate("/login")} >
+            <span
+              className="text-[rgb(46,72,218)] cursor-pointer"
+              onClick={() => navigate("/login")}
+            >
               Sign In
             </span>
           </p>

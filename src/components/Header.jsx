@@ -8,7 +8,6 @@ import SubMenuView from "../features/subMenu/SubMenuView";
 import MobileSubMenuView from "../features/subMenu/MobileSubMenuView";
 import { useNavigate } from "react-router-dom";
 
-import UserInfoView from "../features/user/userInfoView";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -19,13 +18,12 @@ const Header = () => {
   const forRentersRef = useRef();
   const forLandordsRef = useRef();
 
-  const displaySubMenu = (e, ref, pageLink) => {
+  const displaySubMenu = (ref, pageLink) => {
     console.log("REFFF", ref.current);
     const tempBtn = ref.current.getBoundingClientRect();
     const left = tempBtn.left;
     const bottom = headerBottom.current.getBoundingClientRect().bottom;
     dispatch(openSubMenu({ pageLink, left, bottom }));
-    console.log("EEEEEEEEEEEEEE", e);
   };
 
   const closeSubMenuLinks = (e) => {
@@ -51,7 +49,7 @@ const Header = () => {
             <ul className="hidden md:flex space-x-4">
               <li
                 className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap cursor-pointer"
-                onClick={(e) => displaySubMenu(e, forRentersRef, "For Renters")}
+                onClick={(e) => displaySubMenu(forRentersRef, "For Renters")}
                 ref={forRentersRef}
               >
                 <p className="mr-1 lg:mr-2">For Renters</p>{" "}
@@ -59,13 +57,18 @@ const Header = () => {
               </li>
               <li
                 className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap for-renters cursor-pointer"
-                onClick={(e) => displaySubMenu(e, forLandordsRef, "For Landlords")}
+                onClick={(e) =>
+                  displaySubMenu(forLandordsRef, "For Landlords")
+                }
                 ref={forLandordsRef}
               >
                 <p className="mr-1 lg:mr-2">For Landlords</p>{" "}
                 <BsChevronDown className="text-sm font-extrabold" />
               </li>
-              <li className="hover:text-brightGreen font-medium whitespace-nowrap">
+              <li
+                className="hover:text-brightGreen font-medium whitespace-nowrap"
+                onClick={closeSubMenuLinks}
+              >
                 <a href="#">Contact</a>
               </li>
               {/* <li className="hover:text-brightGreen font-medium whitespace-nowrap">
@@ -101,7 +104,6 @@ const Header = () => {
             >
               Create Account
             </button>
-            <UserInfoView />
           </div>
         </div>
       </header>

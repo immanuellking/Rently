@@ -4,10 +4,12 @@ import { fetchUserInfo } from "./userInfoSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-const UserInfoView = () => {
+// import { BsPersonCircle } from "react-icons/bs";
+
+const useGetUserInfo = () => {
   const dispatch = useDispatch();
 
-  const { firstName } = useSelector((state) => state.userInfo);
+  const { first_name, last_name } = useSelector((state) => state.userInfo);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -21,7 +23,7 @@ const UserInfoView = () => {
     };
   }, [dispatch]);
 
-  return <div>{firstName}</div>;
+  return {first_name, last_name}
 };
 
-export default UserInfoView;
+export default useGetUserInfo;

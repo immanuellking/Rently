@@ -22,7 +22,7 @@ const SubMenuView = () => {
     subHeader.style.top = `${bottom}px`;
   }, [headerSubLinks]);
 
-  console.log(links);
+  // console.log(links);
 
   return (
     <div
