@@ -8,6 +8,7 @@ import SubMenuView from "../features/subMenu/SubMenuView";
 import MobileSubMenuView from "../features/subMenu/MobileSubMenuView";
 import { useNavigate } from "react-router-dom";
 
+import { auth } from "../config/firebase";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -57,9 +58,7 @@ const Header = () => {
               </li>
               <li
                 className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap for-renters cursor-pointer"
-                onClick={(e) =>
-                  displaySubMenu(forLandordsRef, "For Landlords")
-                }
+                onClick={(e) => displaySubMenu(forLandordsRef, "For Landlords")}
                 ref={forLandordsRef}
               >
                 <p className="mr-1 lg:mr-2">For Landlords</p>{" "}
@@ -92,18 +91,29 @@ const Header = () => {
             </h1>
           </div>
           <div className="flex-1 hidden md:flex justify-end header">
-            <button
-              className="hover:text-brightGreen font-medium whitespace-nowrap"
-              onClick={() => navigate("/login")}
-            >
-              Log In
-            </button>
-            <button
-              className="bg-brightBlue py-2 px-4 ml-4 rounded-3xl font-medium whitespace-nowrap"
-              onClick={() => navigate("/create-account")}
-            >
-              Create Account
-            </button>
+            {auth.currentUser?.email ? (
+              <button
+                className="bg-brightBlue py-2 px-6 ml-4 rounded-3xl text-lg font-semibold whitespace-nowrap"
+                onClick={() => navigate("/create-account")}
+              >
+                Dashboard
+              </button>
+            ) : (
+              <>
+                <button
+                  className="hover:text-brightGreen font-medium whitespace-nowrap"
+                  onClick={() => navigate("/login")}
+                >
+                  Log In
+                </button>
+                <button
+                  className="bg-brightBlue py-2 px-4 ml-4 rounded-3xl font-medium whitespace-nowrap"
+                  onClick={() => navigate("/create-account")}
+                >
+                  Create Account
+                </button>
+              </>
+            )}
           </div>
         </div>
       </header>

@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { auth, googleProvider } from "../config/firebase";
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 import { useNavigate } from "react-router-dom";
@@ -62,28 +62,39 @@ const TenantSignUp = () => {
 
       console.log("GOOOGGGLLLEEEE", user);
 
-      const email = user.email;  
-      const firstName = user.displayName.split(" ")[0];
-      const lastName = user.displayName.split(" ").slice(1).join(" ");
-      const userId = user.uid;
+      const email = user.email;
 
-      await addDoc(userCollectionRef, {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        userId: user?.uid,
-      });
+      const q = query(userCollectionRef, where("email", "==", email));
+      const querySnapshot = await getDocs(q);
+      console.log("Query Snapshot !!!", querySnapshot);
 
-      console.log("User registered successfully!");
+      if (!querySnapshot.empty) {
+        console.log("User with this email already exists in the database.");
+        console.log("User signed in successfully!");
+      } else {
+        console.log("User with this email does not exists in the database so we add them.");
+        const firstName = user.displayName.split(" ")[0];
+        const lastName = user.displayName.split(" ").slice(1).join(" ");
+        const userId = user.uid;
+
+        await addDoc(userCollectionRef, {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          userId: userId,
+        });
+
+        console.log("User registered successfully!");
+      }
+
+      
       navigate("/");
-
     } catch (error) {
       console.error(error);
     }
   };
 
   console.log(auth?.currentUser?.email);
-  
 
   return (
     <div

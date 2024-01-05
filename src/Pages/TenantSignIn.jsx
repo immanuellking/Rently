@@ -3,8 +3,9 @@ import { GoMail } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 
 import { auth, googleProvider } from "../config/firebase";
+import { db } from "../config/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 
 import { useNavigate } from "react-router-dom";
 
@@ -13,8 +14,6 @@ const TenantSignIn = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-
-
 
   const signIn = async (e) => {
     e.preventDefault();
@@ -47,31 +46,30 @@ const TenantSignIn = () => {
       const userCollectionRef = collection(db, "users");
       const q = query(userCollectionRef, where("email", "==", user_email));
 
-      const querySnapshot = getDocs(q);
+      const querySnapshot = await getDocs(q);
+      console.log("Query Snapshot !!!", querySnapshot)
 
       if (!querySnapshot.empty) {
-
-        console.log('User with this email already exists in the database.');
-  
+        console.log("User with this email already exists in the database.");
+        console.log("User Signed In successfully!");
       } else {
+        console.log("User with this email does not exists in the database so we add them.")
+        const firstName = user.displayName.split(" ")[0];
+        const lastName = user.displayName.split(" ").slice(1).join(" ");
+        const userId = user.uid;
 
-      const firstName = user.displayName.split(" ")[0];
-      const lastName = user.displayName.split(" ").slice(1).join(" ");
-      const userId = user.uid;
+        await addDoc(userCollectionRef, {
+          firstName: firstName,
+          lastName: lastName,
+          email: user_email,
+          userId: userId,
+        });
 
-      await addDoc(userCollectionRef, {
-        firstName: firstName,
-        lastName: lastName,
-        email: user_email,
-        userId: user?.uid,
-      });
-
+        console.log("User Registered successfully!");
       }
 
-      console.log("User Signed In successfully!");
+      
       navigate("/");
-
-
     } catch (error) {
       console.error(error);
     }
