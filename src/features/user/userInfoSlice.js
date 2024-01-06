@@ -6,6 +6,7 @@ const initialState = {
   first_name: "",
   last_name: "",
   loading: false,
+  user_status: false,
 };
 
 export const fetchUserInfo = createAsyncThunk(
@@ -51,11 +52,13 @@ const userInfoSlice = createSlice({
       state.loading = false;
       state.first_name = user.firstName;
       state.last_name = user.lastName;
+      state.user_status = true
     });
     builder.addCase(fetchUserInfo.rejected, (state) => {
       state.loading = false;
       state.first_name = "";
       state.last_name = "";
+      state.user_status = false;
     });
   },
 });

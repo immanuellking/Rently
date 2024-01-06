@@ -8,7 +8,7 @@ import SubMenuView from "../features/subMenu/SubMenuView";
 import MobileSubMenuView from "../features/subMenu/MobileSubMenuView";
 import { useNavigate } from "react-router-dom";
 
-import { auth } from "../config/firebase";
+import useGetUserInfo from "../features/user/useGetUserInfo";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -36,6 +36,9 @@ const Header = () => {
   const displaySidebar = () => {
     setOpenSidebar(!openSidebar);
   };
+
+    const { user_status } =  useGetUserInfo()
+  
 
   return (
     <>
@@ -91,10 +94,10 @@ const Header = () => {
             </h1>
           </div>
           <div className="flex-1 hidden md:flex justify-end header">
-            {auth.currentUser?.email ? (
+            {user_status ? (
               <button
-                className="bg-brightBlue py-2 px-6 ml-4 rounded-3xl text-lg font-semibold whitespace-nowrap"
-                onClick={() => navigate("/create-account")}
+                className="bg-brightBlue py-2 px-6 ml-4 rounded-3xl font-medium whitespace-nowrap"
+                onClick={() => navigate("/dashboard")}
               >
                 Dashboard
               </button>
