@@ -37,8 +37,7 @@ const Header = () => {
     setOpenSidebar(!openSidebar);
   };
 
-    const { user_status } =  useGetUserInfo()
-  
+  const { user_status, first_name } = useGetUserInfo();
 
   return (
     <>
@@ -95,12 +94,19 @@ const Header = () => {
           </div>
           <div className="flex-1 hidden md:flex justify-end header">
             {user_status ? (
-              <button
-                className="bg-brightBlue py-2 px-6 ml-4 rounded-3xl font-medium whitespace-nowrap"
-                onClick={() => navigate("/dashboard")}
-              >
-                Dashboard
-              </button>
+              <>
+                <p
+                  className="py-2 px-6 ml-4 font-medium whitespace-nowrap"
+                >
+                  Hi, {first_name}
+                </p>
+                <button
+                  className="bg-red-600 py-2 px-6 rounded-3xl font-medium whitespace-nowrap"
+                  
+                >
+                  Sign Out
+                </button>
+              </>
             ) : (
               <>
                 <button

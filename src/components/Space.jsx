@@ -78,7 +78,7 @@ const Space = ({
       </Swiper>
 
       <div
-        className="w-full px-2"
+        className="w-full px-2 cursor-pointer"
         onClick={() => navigate(`/apartment/${id}`)}
       >
         <div className="w-full py-4 space-y-2 border-b-[1px] border-brightGrey border-opacity-30">
