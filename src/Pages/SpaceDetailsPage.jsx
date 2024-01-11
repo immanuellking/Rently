@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Map from "../components/Map";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,6 +12,7 @@ import { fetchSingleApartment } from "../features/Rent/apartmentsSlice";
 
 import { BiImages } from "react-icons/bi";
 import SpaceImagesModal from "../components/SpaceImagesModal";
+import useGetUserInfo from "../features/user/useGetUserInfo";
 
 const SpaceDetailsPage = () => {
   const { singleApartment, loading, error } = useSelector(
@@ -19,6 +20,8 @@ const SpaceDetailsPage = () => {
   );
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const { spaceId } = useParams();
 
@@ -45,6 +48,8 @@ const SpaceDetailsPage = () => {
     rent_details,
   } = singleApartment;
   // const { bed, is_bathroom_shared, is_furnished, power, is_space_shared} = apartment_details;
+
+  const { user_status } = useGetUserInfo();
 
   return (
     <>
@@ -88,7 +93,9 @@ const SpaceDetailsPage = () => {
                   color="#fff"
                   size={20}
                 />
-                <p className="text-white text-sm lg:text-base font-semibold">View all photos</p>
+                <p className="text-white text-sm lg:text-base font-semibold">
+                  View all photos
+                </p>
               </div>
             </div>
           </div>
@@ -213,9 +220,18 @@ const SpaceDetailsPage = () => {
                     </p>
                   </div>
 
-                  <button className="w-full py-4 bg-brightBlue rounded-3xl font-bold text-white">
-                    Login
-                  </button>
+                  {user_status ? (
+                    <button className="w-full py-3 bg-brightBlue rounded-3xl font-bold text-white">
+                      Book Space
+                    </button>
+                  ) : (
+                    <button
+                      className="w-full py-3 bg-brightBlue rounded-3xl font-bold text-white"
+                      onClick={() => navigate("/create-account")}
+                    >
+                      Login / Create Account
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

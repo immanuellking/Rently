@@ -10,6 +10,10 @@ import { useNavigate } from "react-router-dom";
 
 import useGetUserInfo from "../features/user/useGetUserInfo";
 
+import { auth } from "../config/firebase";
+import { signOut } from "firebase/auth";
+
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,6 +40,11 @@ const Header = () => {
   const displaySidebar = () => {
     setOpenSidebar(!openSidebar);
   };
+
+  const logOut = () => {
+    signOut(auth);
+    navigate("/");
+  }
 
   const { user_status, first_name } = useGetUserInfo();
 
@@ -102,7 +111,7 @@ const Header = () => {
                 </p>
                 <button
                   className="bg-red-600 py-2 px-6 rounded-3xl font-medium whitespace-nowrap"
-                  
+                  onClick={() => logOut}
                 >
                   Sign Out
                 </button>
