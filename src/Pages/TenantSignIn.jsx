@@ -7,7 +7,7 @@ import { db } from "../config/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useHistory } from "react-router-dom";
 
 const TenantSignIn = () => {
   const [email, setEmail] = useState("");
@@ -18,15 +18,11 @@ const TenantSignIn = () => {
   const signIn = async (e) => {
     e.preventDefault();
     try {
-      const userCredentials = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredentials = await signInWithEmailAndPassword(auth, email, password);
       console.log(userCredentials);
       const user = userCredentials?.user;
       console.log("User Signed In successfully!");
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       console.error("Error signing in user:", error);
     } finally {
@@ -47,13 +43,15 @@ const TenantSignIn = () => {
       const q = query(userCollectionRef, where("email", "==", user_email));
 
       const querySnapshot = await getDocs(q);
-      console.log("Query Snapshot !!!", querySnapshot)
+      console.log("Query Snapshot !!!", querySnapshot);
 
       if (!querySnapshot.empty) {
         console.log("User with this email already exists in the database.");
         console.log("User Signed In successfully!");
       } else {
-        console.log("User with this email does not exists in the database so we add them.")
+        console.log(
+          "User with this email does not exists in the database so we add them."
+        );
         const firstName = user.displayName.split(" ")[0];
         const lastName = user.displayName.split(" ").slice(1).join(" ");
         const userId = user.uid;
@@ -68,8 +66,7 @@ const TenantSignIn = () => {
         console.log("User Registered successfully!");
       }
 
-      
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       console.error(error);
     }
@@ -90,9 +87,7 @@ const TenantSignIn = () => {
     >
       <div className="bg-[rgba(255,255,255,0.71)] backdrop-blur-[5.9px] rounded-[16px] border-[1px] border-[rgba(255,255,255,0.5)] w-[95%] md:w-[50%] lg:w-[40%] m-auto py-5 px-5 md:py-10 md:px-6 lg:px-12">
         <div className="w-full flex flex-col items-center gap-y-3">
-          <h1 className="text-[22px] md:text-2xl font-bold m-0 p-0">
-            Welcome Back
-          </h1>
+          <h1 className="text-[22px] md:text-2xl font-bold m-0 p-0">Welcome Back</h1>
           <p className="text-sm md:text-base text-center">
             Sign into your Rently account to continue.
           </p>
@@ -124,10 +119,7 @@ const TenantSignIn = () => {
                     fill="#34A853"
                     d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
                   ></path>
-                  <path
-                    fill="none"
-                    d="M0 0h48v48H0z"
-                  ></path>
+                  <path fill="none" d="M0 0h48v48H0z"></path>
                 </g>
               </svg>
             </div>
@@ -135,16 +127,10 @@ const TenantSignIn = () => {
           </button>
         </div>
 
-        <form
-          className="mt-10 md:mt-12 lg:mt-20"
-          onSubmit={signIn}
-        >
+        <form className="mt-10 md:mt-12 lg:mt-20" onSubmit={signIn}>
           <div className="grid grid-cols-1 gap-x-10 gap-y-3 md:gap-y-5">
             <div className="space-y-1">
-              <label
-                htmlFor="email"
-                className="text-xs font-bold ml-4 md:ml-8"
-              >
+              <label htmlFor="email" className="text-xs font-bold ml-4 md:ml-8">
                 EMAIL ADDRESS
               </label>
               <div className="has-[:focus]:ring-2 has-[:focus]:ring-[rgb(118,134,228)] flex items-center px-6 py-3 md:py-4 space-x-4 ring-[1px] ring-[rgb(153,164,225)] rounded-full bg-[rgb(250,250,254)]">
@@ -160,10 +146,7 @@ const TenantSignIn = () => {
               </div>
             </div>
             <div className="space-y-1">
-              <label
-                htmlFor="password"
-                className="text-xs font-bold ml-4 md:ml-8"
-              >
+              <label htmlFor="password" className="text-xs font-bold ml-4 md:ml-8">
                 PASSWORD
               </label>
               <div className="has-[:focus]:ring-2 has-[:focus]:ring-[rgb(118,134,228)] flex items-center px-6 py-3 md:py-4 space-x-4 ring-[1px] ring-[rgb(153,164,225)]  rounded-full bg-[rgb(250,250,254)]">

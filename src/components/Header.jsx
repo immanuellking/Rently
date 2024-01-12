@@ -79,7 +79,7 @@ const Header = () => {
                 className="hover:text-brightGreen font-medium whitespace-nowrap"
                 onClick={closeSubMenuLinks}
               >
-                <a href="#">Contact</a>
+                <p className="cursor-pointer">Contact</p>
               </li>
               {/* <li className="hover:text-brightGreen font-medium whitespace-nowrap">
             <a href="#">About</a>

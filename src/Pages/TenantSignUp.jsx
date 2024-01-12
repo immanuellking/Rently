@@ -3,11 +3,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { GoMail } from "react-icons/go";
 import { LuLock } from "react-icons/lu";
 
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth, googleProvider } from "../config/firebase";
 
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
@@ -28,11 +24,7 @@ const TenantSignUp = () => {
   const signUp = async (e) => {
     e.preventDefault();
     try {
-      const userCredentials = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
       console.log(userCredentials);
       const user = userCredentials?.user;
 
@@ -72,7 +64,9 @@ const TenantSignUp = () => {
         console.log("User with this email already exists in the database.");
         console.log("User signed in successfully!");
       } else {
-        console.log("User with this email does not exists in the database so we add them.");
+        console.log(
+          "User with this email does not exists in the database so we add them."
+        );
         const firstName = user.displayName.split(" ")[0];
         const lastName = user.displayName.split(" ").slice(1).join(" ");
         const userId = user.uid;
@@ -87,8 +81,7 @@ const TenantSignUp = () => {
         console.log("User registered successfully!");
       }
 
-      
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       console.error(error);
     }
@@ -141,10 +134,7 @@ const TenantSignUp = () => {
                     fill="#34A853"
                     d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
                   ></path>
-                  <path
-                    fill="none"
-                    d="M0 0h48v48H0z"
-                  ></path>
+                  <path fill="none" d="M0 0h48v48H0z"></path>
                 </g>
               </svg>
             </div>
@@ -152,16 +142,10 @@ const TenantSignUp = () => {
           </button>
         </div>
 
-        <form
-          className="mt-10 md:mt-12 lg:mt-20"
-          onSubmit={signUp}
-        >
+        <form className="mt-10 md:mt-12 lg:mt-20" onSubmit={signUp}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3 md:gap-y-5">
             <div className="space-y-1">
-              <label
-                htmlFor="first_name"
-                className="text-xs font-bold ml-4 md:ml-8"
-              >
+              <label htmlFor="first_name" className="text-xs font-bold ml-4 md:ml-8">
                 FIRST NAME
               </label>
               <div className="has-[:focus]:ring-2 has-[:focus]:ring-[rgb(118,134,228)] flex items-center px-6 py-3 md:py-4 space-x-4 ring-[1px] ring-[rgb(153,164,225)] rounded-full bg-[rgb(250,250,254)]">
@@ -177,10 +161,7 @@ const TenantSignUp = () => {
               </div>
             </div>
             <div className="space-y-1">
-              <label
-                htmlFor="last_name"
-                className="text-xs font-bold ml-4 md:ml-8"
-              >
+              <label htmlFor="last_name" className="text-xs font-bold ml-4 md:ml-8">
                 LAST NAME
               </label>
               <div className="has-[:focus]:ring-2 has-[:focus]:ring-[rgb(118,134,228)] flex items-center px-6 py-3 md:py-4 space-x-4 ring-[1px] ring-[rgb(153,164,225)] rounded-full bg-[rgb(250,250,254)]">
@@ -196,10 +177,7 @@ const TenantSignUp = () => {
               </div>
             </div>
             <div className="space-y-1">
-              <label
-                htmlFor="email"
-                className="text-xs font-bold ml-4 md:ml-8"
-              >
+              <label htmlFor="email" className="text-xs font-bold ml-4 md:ml-8">
                 EMAIL ADDRESS
               </label>
               <div className="has-[:focus]:ring-2 has-[:focus]:ring-[rgb(118,134,228)] flex items-center px-6 py-3 md:py-4 space-x-4 ring-[1px] ring-[rgb(153,164,225)] rounded-full bg-[rgb(250,250,254)]">
@@ -215,10 +193,7 @@ const TenantSignUp = () => {
               </div>
             </div>
             <div className="space-y-1">
-              <label
-                htmlFor="password"
-                className="text-xs font-bold ml-4 md:ml-8"
-              >
+              <label htmlFor="password" className="text-xs font-bold ml-4 md:ml-8">
                 PASSWORD
               </label>
               <div className="has-[:focus]:ring-2 has-[:focus]:ring-[rgb(118,134,228)] flex items-center px-6 py-3 md:py-4 space-x-4 ring-[1px] ring-[rgb(153,164,225)]  rounded-full bg-[rgb(250,250,254)]">
