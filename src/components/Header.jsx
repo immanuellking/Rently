@@ -13,7 +13,6 @@ import useGetUserInfo from "../features/user/useGetUserInfo";
 import { auth } from "../config/firebase";
 import { signOut } from "firebase/auth";
 
-
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,7 +43,8 @@ const Header = () => {
   const logOut = () => {
     signOut(auth);
     navigate("/");
-  }
+    window.location.reload();
+  };
 
   const { user_status, first_name } = useGetUserInfo();
 
@@ -85,10 +85,7 @@ const Header = () => {
             <a href="#">About</a>
           </li> */}
             </ul>
-            <div
-              className="flex md:hidden text-white"
-              onClick={displaySidebar}
-            >
+            <div className="flex md:hidden text-white" onClick={displaySidebar}>
               {openSidebar ? (
                 <CgClose className="text-white text-4xl font-bold" />
               ) : (
@@ -97,21 +94,17 @@ const Header = () => {
             </div>
           </nav>
           <div className="md:flex-1 md:flex absolute left-[40%] md:static md:justify-center header">
-            <h1 className="text-4xl font-semibold header cursor-default">
-              Rently.
-            </h1>
+            <h1 className="text-4xl font-semibold header cursor-default">Rently.</h1>
           </div>
           <div className="flex-1 hidden md:flex justify-end header">
             {user_status ? (
               <>
-                <p
-                  className="py-2 px-6 ml-4 font-medium whitespace-nowrap"
-                >
+                <p className="py-2 px-6 ml-4 font-medium whitespace-nowrap">
                   Hi, {first_name}
                 </p>
                 <button
                   className="bg-red-600 py-2 px-6 rounded-3xl font-medium whitespace-nowrap"
-                  onClick={() => logOut}
+                  onClick={logOut}
                 >
                   Sign Out
                 </button>
