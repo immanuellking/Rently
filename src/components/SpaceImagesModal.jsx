@@ -39,7 +39,7 @@ const SpaceImagesModal = ({ setImagesModalVisible, spaceImages }) => {
           />
         </div>
 
-        <div className="w-full lg:w-4/5 m-auto">
+        <div className="w-full lg:w-9/12 m-auto">
           <Swiper
             slidesPerView={1}
             spaceBetween={30}

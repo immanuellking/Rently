@@ -30,12 +30,9 @@ export const fetchUserInfo = createAsyncThunk(
       console.log("User data:", userData);
 
       return userData;
-
     } catch (error) {
-
       console.log(error);
       return error;
-
     }
   }
 );
@@ -54,7 +51,7 @@ const userInfoSlice = createSlice({
       state.first_name = user.firstName;
       state.last_name = user.lastName;
       state.email = user.email;
-      state.user_status = true
+      state.user_status = true;
     });
     builder.addCase(fetchUserInfo.rejected, (state) => {
       state.loading = false;

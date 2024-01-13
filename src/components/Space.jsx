@@ -15,7 +15,6 @@ import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper/modules";
 
-
 const Space = ({
   images,
   location,
@@ -31,7 +30,6 @@ const Space = ({
 
   const navigate = useNavigate();
 
-
   return (
     <div className="w-full col-span-1 row-span-1 bg-white p-2 rounded-lg ">
       <Swiper
@@ -43,7 +41,7 @@ const Space = ({
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper h-[250px] sm:h-[270px] xl:h-[300px]"
+        className="mySwiper h-[250px]"
       >
         <SwiperSlide
           className="w-full h-full"
@@ -83,8 +81,8 @@ const Space = ({
       >
         <div className="w-full py-4 space-y-2 border-b-[1px] border-brightGrey border-opacity-30">
           <div className="w-full flex justify-between">
-            <h1 className="text-xl font-bold">{name}</h1>
-            <div className="flex items-center justify-start text-sm text-brightGrey space-x-1">
+            <h1 className="text-lg font-bold">{name}</h1>
+            <div className="flex items-center justify-start text-[13px] text-brightGrey space-x-1">
               <SlLocationPin />
               <p>{location}</p>
             </div>
@@ -111,7 +109,7 @@ const Space = ({
           <p>
             From{" "}
             <span className="font-bold text-black">
-              NGN {rent + service_charge}
+              NGN {(rent + service_charge).toLocaleString()}
             </span>{" "}
             monthly
           </p>
