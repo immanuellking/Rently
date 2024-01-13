@@ -198,9 +198,7 @@ const SpaceDetailsPage = () => {
                   </div>
 
                   {user_status ? (
-                    <button className="w-full py-3 bg-brightBlue rounded-3xl font-bold text-white">
                       <PayButton email={email} amount={totalRent} />
-                    </button>
                   ) : (
                     <button
                       className="w-full py-3 bg-brightBlue rounded-3xl font-bold text-white"
