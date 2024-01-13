@@ -134,7 +134,12 @@ const Header = () => {
         </div>
       </header>
       <SubMenuView />
-      <MobileSubMenuView openSidebar={openSidebar} />
+      <MobileSubMenuView
+        openSidebar={openSidebar}
+        user_status={user_status}
+        first_name={first_name}
+        logOut={logOut}
+      />
     </>
   );
 };

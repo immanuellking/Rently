@@ -3,7 +3,12 @@ import { useSelector } from "react-redux";
 import { learnLinks } from "../../data";
 import { useNavigate } from "react-router-dom";
 
-const MobileSubMenuView = ({ openSidebar }) => {
+const MobileSubMenuView = ({
+  openSidebar,
+  user_status,
+  first_name,
+  logOut,
+}) => {
   const mobileSubLinks = useSelector((state) => state.subMenu.headerLinks);
   const navigate = useNavigate();
 
@@ -14,21 +19,18 @@ const MobileSubMenuView = ({ openSidebar }) => {
       } ease-in-out duration-1000 h-screen overflow-y-auto`}
       style={{ zIndex: 900 }}
     >
+      <p className="mt-16 font-medium whitespace-nowrap text-white text-xl">
+        Hi, {first_name}
+      </p>
       {mobileSubLinks.map((subLink, index) => {
         const { page, links } = subLink;
         return (
-          <article
-            key={index}
-            className="space-y-6"
-          >
+          <article key={index} className="space-y-6">
             <h2 className="text-lg text-[#D1D1D8]">{page}</h2>
             {links.map((link, index) => {
               const { label, icon, bg } = link;
               return (
-                <div
-                  className="flex items-center gap-x-4"
-                  key={index}
-                >
+                <div className="flex items-center gap-x-4" key={index}>
                   <div
                     className="flex items-center justify-center w-10 h-10 rounded-xl"
                     style={{ background: `#${bg}` }}
@@ -49,10 +51,7 @@ const MobileSubMenuView = ({ openSidebar }) => {
         {learnLinks.map((link, index) => {
           const { label, icon, bg } = link;
           return (
-            <div
-              className="flex items-center gap-x-4"
-              key={index}
-            >
+            <div className="flex items-center gap-x-4" key={index}>
               <div
                 className="flex items-center justify-center w-10 h-10 rounded-xl"
                 style={{ background: `#${bg}` }}
@@ -68,18 +67,29 @@ const MobileSubMenuView = ({ openSidebar }) => {
       </article>
 
       <div className="flex flex-col header gap-y-4">
-        <button
-          className="bg-brightBlue text-white text-lg font-semibold py-3 w-80 px-4 rounded-3xl whitespace-nowrap"
-          onClick={() => navigate("/create-account")}
-        >
-          Create Account
-        </button>
-        <button
-          className="text-white text-lg font-semibold border-2 border-white py-3 w-80 px-4 rounded-3xl whitespace-nowrap"
-          onClick={() => navigate("/login")}
-        >
-          Sign In
-        </button>
+        {user_status ? (
+          <button
+            className="text-white text-lg font-semibold bg-red-600 py-3 w-80 px-4 rounded-3xl whitespace-nowrap"
+            onClick={logOut}
+          >
+            Sign Out
+          </button>
+        ) : (
+          <>
+            <button
+              className="bg-brightBlue text-white text-lg font-semibold py-3 w-80 px-4 rounded-3xl whitespace-nowrap"
+              onClick={() => navigate("/create-account")}
+            >
+              Create Account
+            </button>
+            <button
+              className="text-white text-lg font-semibold border-2 border-white py-3 w-80 px-4 rounded-3xl whitespace-nowrap"
+              onClick={() => navigate("/login")}
+            >
+              Sign In
+            </button>
+          </>
+        )}
       </div>
     </section>
   );
