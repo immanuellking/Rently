@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { PaystackButton } from "react-paystack";
 
+import { useNavigate } from "react-router-dom";
+
 const PayButton = ({ email, amount }) => {
   const publicKey = import.meta.env.VITE_PS_PUBLIC_KEY;
-  const [reference, setReference] = useState("");
+//   const [reference, setReference] = useState("");
+
+const navigate = useNavigate()
 
   const handlePaystackSuccessAction = (reference) => {
     // handle payment success
     console.log(reference)
+    navigate("/payment-success")
   };
 
   const componentProps = {

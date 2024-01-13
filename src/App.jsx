@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import SpaceDetailsPage from "./Pages/SpaceDetailsPage";
 import TenantSignUp from "./Pages/TenantSignUp";
 import TenantSignIn from "./Pages/TenantSignIn";
+import SuccessPayment from "./components/SuccessPayment";
 
 function App() {
   const [showHeaderAndFooter, setShowHeaderAndFooter] = useState(true);
@@ -20,7 +21,7 @@ function App() {
   }, [location.pathname]);
 
   const noHeaderAndFooterRoutes = useMemo(
-    () => ["/create-account", "/login"],
+    () => ["/create-account", "/login", "/payment-success"],
     []
   );
 
@@ -57,6 +58,10 @@ function App() {
         <Route
           path="/login"
           element={<TenantSignIn />}
+        />
+        <Route 
+         path="/payment-success"
+         element={<SuccessPayment />}
         />
       </Routes>
       {showHeaderAndFooter && <Footer />}
