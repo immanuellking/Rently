@@ -5,6 +5,7 @@ import { db } from "../../config/firebase";
 const initialState = {
   first_name: "",
   last_name: "",
+  email: "",
   loading: false,
   user_status: false,
 };
@@ -52,6 +53,7 @@ const userInfoSlice = createSlice({
       state.loading = false;
       state.first_name = user.firstName;
       state.last_name = user.lastName;
+      state.email = user.email;
       state.user_status = true
     });
     builder.addCase(fetchUserInfo.rejected, (state) => {

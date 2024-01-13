@@ -7,7 +7,7 @@ import { db } from "../config/firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 
-import { useNavigate, useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TenantSignIn = () => {
   const [email, setEmail] = useState("");

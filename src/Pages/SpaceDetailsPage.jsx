@@ -13,6 +13,7 @@ import { fetchSingleApartment } from "../features/Rent/apartmentsSlice";
 import { BiImages } from "react-icons/bi";
 import SpaceImagesModal from "../components/SpaceImagesModal";
 import useGetUserInfo from "../features/user/useGetUserInfo";
+import PayButton from "../components/PayButton";
 
 const SpaceDetailsPage = () => {
   const { singleApartment, loading, error } = useSelector(
@@ -49,7 +50,14 @@ const SpaceDetailsPage = () => {
   } = singleApartment;
   // const { bed, is_bathroom_shared, is_furnished, power, is_space_shared} = apartment_details;
 
-  const { user_status } = useGetUserInfo();
+  const { user_status, email } = useGetUserInfo();
+
+  const totalRent =
+    rent_details?.rent +
+    rent_details?.service_charge +
+    rent_details?.refundable_security_deposit +
+    rent_details?.booking_fee +
+    rent_details?.vat;
 
   return (
     <>
@@ -60,39 +68,24 @@ const SpaceDetailsPage = () => {
               className="w-full col-span-6 md:col-span-3 md:row-span-2 rounded-none lg:rounded-2xl overflow-hidden cursor-pointer"
               onClick={() => setImagesModalVisible(true)}
             >
-              <img
-                src={image_1}
-                alt="image"
-                className="w-full h-full"
-              />
+              <img src={image_1} alt="image" className="w-full h-full" />
             </div>
             <div
               className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden cursor-pointer"
               onClick={() => setImagesModalVisible(true)}
             >
-              <img
-                src={image_2}
-                alt="image"
-                className="w-full h-full"
-              />
+              <img src={image_2} alt="image" className="w-full h-full" />
             </div>
             <div
               className="w-full col-span-3 md:col-span-2 rounded-none lg:rounded-2xl overflow-hidden relative cursor-pointer"
               onClick={() => setImagesModalVisible(true)}
             >
-              <img
-                src={image_3}
-                alt="image"
-                className="w-full h-full"
-              />
+              <img src={image_3} alt="image" className="w-full h-full" />
               <div
                 className="absolute bottom-1 lg:bottom-5 right-1 lg:right-5 bg-[rgba(0,0,0,0.7)] cursor-pointer flex justify-center items-center py-2 lg:py-3 px-3 lg:px-7 space-x-2 rounded-lg"
                 onClick={() => setImagesModalVisible(true)}
               >
-                <BiImages
-                  color="#fff"
-                  size={20}
-                />
+                <BiImages color="#fff" size={20} />
                 <p className="text-white text-sm lg:text-base font-semibold">
                   View all photos
                 </p>
@@ -135,10 +128,7 @@ const SpaceDetailsPage = () => {
                 <h1 className="font-semibold">Amenities</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 pt-8">
                   {amenities?.map((item, index) => (
-                    <p
-                      key={index}
-                      className="text-brightGrey"
-                    >
+                    <p key={index} className="text-brightGrey">
                       {item}
                     </p>
                   ))}
@@ -148,14 +138,8 @@ const SpaceDetailsPage = () => {
                 <h1 className="font-semibold">House Rules</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 pt-8">
                   {house_rules?.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-x-2"
-                    >
-                      <FaCheckCircle
-                        color="#2E48DA"
-                        size={20}
-                      />
+                    <div key={index} className="flex items-center gap-x-2">
+                      <FaCheckCircle color="#2E48DA" size={20} />
                       <p className="text-brightGrey leading-5">{item}</p>
                     </div>
                   ))}
@@ -209,20 +193,13 @@ const SpaceDetailsPage = () => {
                   <div className="flex justify-between">
                     <p className="font-semibold">Total</p>
                     <p className="text-2xl font-bold">
-                      NGN{" "}
-                      {(
-                        rent_details?.rent +
-                        rent_details?.service_charge +
-                        rent_details?.refundable_security_deposit +
-                        rent_details?.booking_fee +
-                        rent_details?.vat
-                      ).toLocaleString()}
+                      NGN {totalRent.toLocaleString()}
                     </p>
                   </div>
 
                   {user_status ? (
                     <button className="w-full py-3 bg-brightBlue rounded-3xl font-bold text-white">
-                      Book Space
+                      <PayButton email={email} amount={totalRent} />
                     </button>
                   ) : (
                     <button
