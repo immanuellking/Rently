@@ -94,7 +94,12 @@ const Header = () => {
             </div>
           </nav>
           <div className="md:flex-1 md:flex absolute left-[40%] md:static md:justify-center header">
-            <h1 className="text-4xl font-semibold header cursor-default">Rently.</h1>
+            <h1
+              className="text-4xl font-semibold header cursor-default"
+              onClick={() => navigate("/")}
+            >
+              Rently.
+            </h1>
           </div>
           <div className="flex-1 hidden md:flex justify-end header">
             {user_status ? (

@@ -5,8 +5,12 @@ import { closeSubMenu } from "../features/subMenu/subMenuSlice";
 import { FiSearch } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
 
+import { useNavigate } from "react-router-dom";
+
 const HeroBanner = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <section
       className="relative w-full h-[80vh] sm:h-[70vh] lg:h-[95vh] mt-20 sm:mt-24"
@@ -47,7 +51,12 @@ const HeroBanner = () => {
               className="flex-1 outline-none border-o bg-transparent text-[rgb(143,148,143)]"
             />
             <button className="bg-brightBlue text-white h-full w-16 sm:w-52 lg:px-16 rounded-full font-semibold text-center flex justify-center items-center">
-              <span className="hidden sm:flex whitespace-nowrap">Find a home</span>
+              <span
+                className="hidden sm:flex whitespace-nowrap"
+                onClick={() => navigate("/spaces")}
+              >
+                Find a home
+              </span>
               <BsArrowRight className="block sm:hidden font-extrabold text-2xl" />
             </button>
           </div>

@@ -60,6 +60,7 @@ const Listings = () => {
             <a
               href="#"
               className="text-brightBlue underline"
+              onClick={() => navigate("/create-account")}
             >
               Sign up as a Host
             </a>
