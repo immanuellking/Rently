@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SuccessPayment = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      navigate("/spaces");
+    }, 3000);
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, []);
+
   return (
     <div className="h-screen w-full bg-white flex items-center justify-center flex-col">
       <img
@@ -19,7 +31,12 @@ const SuccessPayment = () => {
         </p>
       </div>
 
-      <button className="mt-4 py-2 px-12 bg-[#7C76FE] text-white font-semibold rounded-md">Done</button>
+      <button
+        className="mt-4 py-2 px-12 bg-[#7C76FE] text-white font-semibold rounded-md"
+        onClick={() => navigate("/")}
+      >
+        Go to Home
+      </button>
     </div>
   );
 };
