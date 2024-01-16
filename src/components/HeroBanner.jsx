@@ -50,10 +50,10 @@ const HeroBanner = () => {
               placeholder="Where would you love to stay?"
               className="flex-1 outline-none border-o bg-transparent text-[rgb(143,148,143)]"
             />
-            <button className="bg-brightBlue text-white h-full w-16 sm:w-52 lg:px-16 rounded-full font-semibold text-center flex justify-center items-center">
+            <button className="bg-brightBlue text-white h-full w-16 sm:w-52 lg:px-16 rounded-full font-semibold text-center flex justify-center items-center" onClick={() => navigate("/spaces")}>
               <span
                 className="hidden sm:flex whitespace-nowrap"
-                onClick={() => navigate("/spaces")}
+                
               >
                 Find a home
               </span>
