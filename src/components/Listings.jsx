@@ -93,8 +93,9 @@ const Listings = () => {
         ref={scrollRef}
       >
         <div className="flex gap-x-5">
-          {available_apartments.map( (apartment, index) => {
+          {available_apartments.slice(0, 3).map( (apartment, index) => {
             const {
+              id,
               name,
               location,
               apartment_details: { is_space_shared, bath, bed },
@@ -107,6 +108,7 @@ const Listings = () => {
               <div
                 key={index}
                 className="w-80 sm:w-96 cursor-pointer"
+                onClick={() => navigate(`/apartment/${id}`)}
               >
                 <div className="w-full h-[300px] sm:h-[350px] rounded-3xl overflow-hidden">
                   <img
@@ -148,7 +150,7 @@ const Listings = () => {
                     <p>
                       From{" "}
                       <span className="font-bold text-black">
-                        NGN {rent + service_charge}
+                        NGN {(rent + service_charge).toLocaleString()}
                       </span>{" "}
                       monthly
                     </p>

@@ -32,6 +32,10 @@ const SpaceDetailsPage = () => {
     dispatch(fetchSingleApartment(spaceId));
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  },[])
+
   console.log("SINGLE AaAAAPP", singleApartment);
   const spaceImages = singleApartment?.images;
   const image_1 = spaceImages?.image_1;
