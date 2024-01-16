@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
-import SubMenuView from "../features/subMenu/SubMenuView";
-import MobileSubMenuView from "../features/subMenu/MobileSubMenuView";
+import MobileSubMenuView from "./MobileSubMenuView";
 import { useNavigate } from "react-router-dom";
 
 import useGetUserInfo from "../features/user/useGetUserInfo";
