@@ -1,6 +1,4 @@
-import React, { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { openSubMenu, closeSubMenu } from "../features/subMenu/subMenuSlice";
+import React, { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
@@ -12,29 +10,15 @@ import useGetUserInfo from "../features/user/useGetUserInfo";
 
 import { auth } from "../config/firebase";
 import { signOut } from "firebase/auth";
+import { SiWindows11 } from "react-icons/si";
+import { RiCoinsFill } from "react-icons/ri";
+import { PiShieldCheckFill } from "react-icons/pi";
+import { ImHome3 } from "react-icons/im";
 
 const Header = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [openSidebar, setOpenSidebar] = useState(false);
-  const headerBottom = useRef();
-  const forRentersRef = useRef();
-  const forLandordsRef = useRef();
-
-  const displaySubMenu = (ref, pageLink) => {
-    console.log("REFFF", ref.current);
-    const tempBtn = ref.current.getBoundingClientRect();
-    const left = tempBtn.left;
-    const bottom = headerBottom.current.getBoundingClientRect().bottom;
-    dispatch(openSubMenu({ pageLink, left, bottom }));
-  };
-
-  const closeSubMenuLinks = (e) => {
-    if (e.target.classList.contains("header")) {
-      dispatch(closeSubMenu());
-    }
-  };
 
   const displaySidebar = () => {
     setOpenSidebar(!openSidebar);
@@ -52,33 +36,126 @@ const Header = () => {
     <>
       <header
         className="w-full h-20 sm:h-24 bg-black text-white fixed top-0 left-0 right-0 header"
-        onClick={closeSubMenuLinks}
         style={{ zIndex: 1000 }}
-        ref={headerBottom}
       >
         <div className="w-full h-full relative flex lg:justify-between items-center px-2 sm:px-5 lg:px-20">
           <nav className="sm:flex-1">
             <ul className="hidden md:flex space-x-4">
-              <li
-                className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap cursor-pointer"
-                onClick={(e) => displaySubMenu(forRentersRef, "For Renters")}
-                ref={forRentersRef}
-              >
-                <p className="mr-1 lg:mr-2">For Renters</p>{" "}
-                <BsChevronDown className="text-sm font-extrabold" />
+              <li className="group hover:text-brightGreen">
+                <div className="flex items-center justify-center whitespace-nowrap cursor-pointer">
+                  <p className="mr-1 lg:mr-2 hover:text-brightGreen font-medium">
+                    For Renters
+                  </p>{" "}
+                  <BsChevronDown className="text-sm font-extrabold text-white" />
+                </div>
+
+                <div className="bg-[#060606] hidden group-hover:fixed group-hover:sm:grid grid-cols-2 px-8 py-8 pt-12 gap-12 top-14">
+                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                    <div
+                      className="flex items-center justify-center w-14 h-14 rounded-xl"
+                      style={{ background: "#E73A03" }}
+                    >
+                      <div className="text-white text-2xl">
+                        <SiWindows11 />
+                      </div>
+                    </div>
+                    <div className="text-white">
+                      <h2 className="font-semibold hover:text-brightGreen">
+                        Marketplace
+                      </h2>
+                      <p className="text-sm text-[#D1D1D8]">
+                        Search for properties
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                    <div
+                      className="flex items-center justify-center w-14 h-14 rounded-xl"
+                      style={{ background: "#442AAC" }}
+                    >
+                      <div className="text-white text-2xl">
+                        <RiCoinsFill />
+                      </div>
+                    </div>
+                    <div className="text-white">
+                      <h2 className="font-semibold hover:text-brightGreen">
+                        Rent now, Pay Later
+                      </h2>
+                      <p className="text-sm text-[#D1D1D8]">
+                        Request for a loan
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </li>
-              <li
-                className="hover:text-brightGreen font-medium flex items-center justify-center whitespace-nowrap for-renters cursor-pointer"
-                onClick={(e) => displaySubMenu(forLandordsRef, "For Landlords")}
-                ref={forLandordsRef}
-              >
-                <p className="mr-1 lg:mr-2">For Landlords</p>{" "}
-                <BsChevronDown className="text-sm font-extrabold" />
+
+              <li className="group hover:text-brightGreen">
+                <div className="flex items-center justify-center whitespace-nowrap cursor-pointer">
+                  <p className="mr-1 lg:mr-2 hover:text-brightGreen font-medium">
+                    For Landlords
+                  </p>{" "}
+                  <BsChevronDown className="text-sm font-extrabold text-white" />
+                </div>
+
+                <div className="bg-[#060606] hidden group-hover:fixed group-hover:sm:grid grid-cols-2 px-8 py-8 pt-12 gap-12 top-14">
+                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                    <div
+                      className="flex items-center justify-center w-14 h-14 rounded-xl"
+                      style={{ background: "#47BB34" }}
+                    >
+                      <div className="text-white text-2xl">
+                        <PiShieldCheckFill />
+                      </div>
+                    </div>
+                    <div className="text-white">
+                      <h2 className="font-semibold hover:text-brightGreen">
+                        Verify a tenants identity
+                      </h2>
+                      <p className="text-sm text-[#D1D1D8]">Confirm identity</p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                    <div
+                      className="flex items-center justify-center w-14 h-14 rounded-xl"
+                      style={{ background: "#2E48DA" }}
+                    >
+                      <div className="text-white text-2xl">
+                        <ImHome3 />
+                      </div>
+                    </div>
+                    <div className="text-white">
+                      <h2 className="font-semibold hover:text-brightGreen">
+                        List your space
+                      </h2>
+                      <p className="text-sm text-[#D1D1D8]">
+                        Rent out property
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                    <div
+                      className="flex items-center justify-center w-14 h-14 rounded-xl"
+                      style={{ background: "#442AAC" }}
+                    >
+                      <div className="text-white text-2xl">
+                        <RiCoinsFill />
+                      </div>
+                    </div>
+                    <div className="text-white">
+                      <h2 className="font-semibold hover:text-brightGreen">
+                        Renty Facility Limited
+                      </h2>
+                      <p className="text-sm text-[#D1D1D8]">
+                        Manage your property
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </li>
-              <li
-                className="hover:text-brightGreen font-medium whitespace-nowrap"
-                onClick={closeSubMenuLinks}
-              >
+              <li className="hover:text-brightGreen font-medium whitespace-nowrap">
                 <p className="cursor-pointer">Contact</p>
               </li>
               {/* <li className="hover:text-brightGreen font-medium whitespace-nowrap">
@@ -97,6 +174,7 @@ const Header = () => {
             <h1
               className="text-4xl font-semibold header cursor-default"
               onClick={() => navigate("/")}
+              style={{ zIndex: 1000 }}
             >
               Rently.
             </h1>
@@ -133,7 +211,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <SubMenuView />
+      {/* <SubMenuView /> */}
       <MobileSubMenuView
         openSidebar={openSidebar}
         user_status={user_status}

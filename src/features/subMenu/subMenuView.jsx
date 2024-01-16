@@ -1,37 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
-import { SiWindows11 } from "react-icons/si";
+import React, { useEffect, useState } from "react";
 
 const SubMenuView = () => {
-  const [links, setLink] = useState({});
-  const container = useRef();
-
-  const subMenu = useSelector((state) => state.subMenu);
-  const { headerSubLinks, location, isSubMenuOpen } = subMenu;
-
-  useEffect(() => {
-    if (headerSubLinks && headerSubLinks.links) {
-      const { links: linksObj } = headerSubLinks;
-      setLink(linksObj);
-    }
-
-    const { left, bottom } = location;
-
-    const subHeader = container.current;
-    subHeader.style.left = `${left}px`;
-    subHeader.style.top = `${bottom}px`;
-  }, [headerSubLinks]);
-
-  // console.log(links);
 
   return (
     <div
-      className={`bg-[#060606] fixed ${
-        !isSubMenuOpen
-          ? "hidden"
-          : `${links.length > 1 ? "hidden sm:grid" : "hidden"}`
-      } grid-cols-2 px-12 py-12 gap-12`}
-      ref={container}
+      className="bg-[#060606] fixed hidden sm:grid grid-cols-2 px-12 py-12 gap-12"
       style={{zIndex: 1000}}
     >
       {links.length > 1 &&
