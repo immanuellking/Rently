@@ -49,7 +49,10 @@ const Header = () => {
                 </div>
 
                 <div className="bg-[#060606] hidden group-hover:fixed group-hover:sm:grid grid-cols-2 px-8 py-8 pt-12 gap-12 top-14">
-                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                  <div
+                    className="flex justify-start items-center gap-x-3 cursor-pointer"
+                    onClick={() => navigate("/spaces")}
+                  >
                     <div
                       className="flex items-center justify-center w-14 h-14 rounded-xl"
                       style={{ background: "#E73A03" }}
@@ -68,7 +71,10 @@ const Header = () => {
                     </div>
                   </div>
 
-                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                  <div
+                    className="flex justify-start items-center gap-x-3 cursor-pointer"
+                    onClick={() => navigate("/spaces")}
+                  >
                     <div
                       className="flex items-center justify-center w-14 h-14 rounded-xl"
                       style={{ background: "#442AAC" }}
@@ -98,7 +104,10 @@ const Header = () => {
                 </div>
 
                 <div className="bg-[#060606] hidden group-hover:fixed group-hover:sm:grid grid-cols-2 px-8 py-8 pt-12 gap-12 top-14">
-                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                  <div
+                    className="flex justify-start items-center gap-x-3 cursor-pointer"
+                    onClick={() => navigate("/spaces")}
+                  >
                     <div
                       className="flex items-center justify-center w-14 h-14 rounded-xl"
                       style={{ background: "#47BB34" }}
@@ -115,7 +124,10 @@ const Header = () => {
                     </div>
                   </div>
 
-                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                  <div
+                    className="flex justify-start items-center gap-x-3 cursor-pointer"
+                    onClick={() => navigate("/spaces")}
+                  >
                     <div
                       className="flex items-center justify-center w-14 h-14 rounded-xl"
                       style={{ background: "#2E48DA" }}
@@ -134,7 +146,10 @@ const Header = () => {
                     </div>
                   </div>
 
-                  <div className="flex justify-start items-center gap-x-3 cursor-pointer">
+                  <div
+                    className="flex justify-start items-center gap-x-3 cursor-pointer"
+                    onClick={() => navigate("/spaces")}
+                  >
                     <div
                       className="flex items-center justify-center w-14 h-14 rounded-xl"
                       style={{ background: "#442AAC" }}
