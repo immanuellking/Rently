@@ -22,7 +22,7 @@ const TenantSignIn = () => {
       console.log(userCredentials);
       const user = userCredentials?.user;
       console.log("User Signed In successfully!");
-      navigate(-1);
+      navigate("/");
     } catch (error) {
       console.error("Error signing in user:", error);
     } finally {
