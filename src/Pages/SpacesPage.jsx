@@ -3,7 +3,6 @@ import { BsChevronDown } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import AvailableSpaces from "../components/AvailableSpaces";
 
-import Footer from "../components/Footer";
 
 const SpacesPage = () => {
   const [spaceOpen, setSpaceOpen] = useState(false);
